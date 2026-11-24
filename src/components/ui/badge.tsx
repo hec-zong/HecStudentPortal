@@ -8,25 +8,22 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground [a]:hover:bg-primary/80',
+        default: 'bg-[#13c2b6] text-black font-semibold [a]:hover:bg-[#27b2d7]',
         secondary:
-          'bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80',
+          'bg-[#87cbde]/25 text-black border-[#87cbde]/40 [a]:hover:bg-[#87cbde]/40',
         destructive:
-          'bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20',
-        outline:
-          'border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground',
-        ghost:
-          'hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50',
-        link: 'text-primary underline-offset-4 hover:underline',
-        // HEC Institutional Status Variants
+          'bg-rose-50 text-rose-700 border-rose-200 focus-visible:ring-rose-200 [a]:hover:bg-rose-100',
+        outline: 'border-[#e5e5e5] text-black bg-white [a]:hover:bg-[#f6fbfe]',
+        ghost: 'hover:bg-[#f6fbfe] hover:text-black',
+        link: 'text-[#13c2b6] underline-offset-4 hover:underline hover:text-[#27b2d7]',
+        // CEGA Institutional Status Variants
         approved:
-          'bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/50',
+          'bg-[#e4faf8] text-[#0b746d] border-[#13c2b6]/40 font-semibold',
         inProgress:
-          'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800/50',
+          'bg-[#e8f7fb] text-[#117690] border-[#27b2d7]/40 font-semibold',
         resubmit:
-          'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800/50',
-        archived:
-          'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800/60 dark:text-slate-300 dark:border-slate-700',
+          'bg-[#fff7ed] text-[#c2410c] border-[#f97316]/40 font-semibold',
+        archived: 'bg-[#f5f5f5] text-[#666666] border-[#e5e5e5] font-semibold',
       },
     },
     defaultVariants: {

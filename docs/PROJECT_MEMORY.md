@@ -52,15 +52,20 @@ Primary users: Students, University Administrators, HEC Reviewers, and Staff.
 - Project documentation structure (`docs/`)
 - Shared Agent Skills structure (`.agents/skills/`)
 - Code quality automation (Prettier, ESLint, Husky, lint-staged)
-- Component system (shadcn/ui with crisp HEC emerald/slate theme)
+- Component system (shadcn/ui modernized with CEGA-inspired institutional design system)
 - State management (TanStack Query, Zustand)
 - Form infrastructure (React Hook Form + Zod)
 - Mock-first architecture & contracts (`src/types/portal.ts`, `src/lib/schemas.ts`, `src/services/portalService.ts`)
 - Mock API Route Handlers (`/api/student/bootstrap`, `/api/synapark/form/[serviceId]`, `/api/synapark/applications`, `/api/synapark/applications/[id]/track`, `/api/pqr/universities`, `/api/billing/challan`)
+- CEGA-inspired design system rollout across all 16 application routes and components:
+  - Typography: Google Font `Orbitron` (weights 600, 700, 900) attached to `--font-heading` for all `h1`-`h4` and headings, paired with clean `ui-sans-serif` for body copy, data tables, and input fields
+  - Color Tokens: Primary canvas `#ffffff`, secondary accents `#87cbde` / `#27b2d7`, primary brand action `#13c2b6` with high-contrast `#000000` text (8.2:1 contrast ratio, WCAG AAA), secondary text `#666666`, borders `#e5e5e5`
+  - Spacing & Shapes: 12px base layout grid (`gap-3`, `gap-6`, `p-6`, etc.), `rounded-2xl` containers/cards, `rounded-[12px]` buttons, min touch targets >= 44x44px for mobile
+  - Shadows: Soft chromatic tinted shadows `0 10px 28px rgba(8, 27, 88, 0.08)` and `0 12px 30px rgba(8, 27, 88, 0.08)` replacing dark backgrounds
 - HEC E-Portal Landing Experience (`/`) with 4 action cards and demo role switcher
 - 10-Step Attestation Journey Guide (`/journey`) with printable summary and confirmation gate
 - Shared Portal Shell (`PortalShell.tsx`) with left sidebar, HEC branding, user summary, top bar notifications, and quick persona simulation
-- Returning Student Dashboard (`/dashboard`) with KPI cards (Total Applications, HEC Wallet details with copyable ID), searchable applications table, quick feature cards (My Degree, Share Proof, Attestation Tracking), and bottom row (My Tasks with priority badges, Profile Status)
+- Returning Student Dashboard (`/dashboard`) with light-theme KPI cards (Total Applications, HEC Wallet details with copyable ID), searchable applications table, quick feature cards (My Degree, Share Proof, Attestation Tracking), and bottom row (My Tasks with priority badges, Profile Status)
 - My Degrees & Digital Assets Vault (`/assets`) with cryptographic verification hashes, PDF downloads, and uploaded documents repository
 - Student Profile page (`/profile`) with NADRA citizen data, editable contact records, and PQR qualification linkage
 - Settings & Security page (`/settings`) with multi-channel notification toggles (SMS, Email, WhatsApp), password management, and active session audit
@@ -70,10 +75,15 @@ Primary users: Students, University Administrators, HEC Reviewers, and Staff.
 - Step 3 Review & Degree Selection (`StepReviewAndDegreeSelection.tsx`) with Personal and Academic summary edit jumps, degree cards (14-Year, 16-Year, etc.) with document checkboxes (Degree, Transcript, Provisional, Equivalence), and sticky real-time E-Challan fee quote
 - Step 4 E-Challan & 1-Link PSID Generation (`StepChallanGeneration.tsx`) with 17-digit PSID voucher, itemized statutory fee breakdown table, copyable PSID, payment channels, and 3-part bank voucher printable preview
 - Step 5 Paid Challan Submission & Worker Portal Handoff (`StepPaidChallanSubmission.tsx`) with payment reference details, inline dropzone for paid receipt, PPC Section 468/471 solemn declaration, and automated transition into HEC Worker Portal scrutiny queue (`Submitted` -> `Scrutiny`)
+- Prevented React maximum update depth loops by wrapping form change handlers in `React.useCallback` with value equality guards in `DynamicFormWizard.tsx` and eliminating redundant sync effects in `StepPaidChallanSubmission.tsx`
+- Minimizable Navigation Bars:
+  - Added desktop sidebar collapse/minimize in `PortalShell.tsx` between full width (`lg:w-64`) and compact icon-only mode (`lg:w-20`) with tooltips and toggle controls (`PanelLeftClose`/`PanelLeftOpen`) in both the sidebar and top bar
+  - Added collapsible mobile navigation drawer in `Navbar.tsx` with hamburger toggle (`Menu`/`X`) and mobile persona switcher
+- Seamless post-submission redirection to student dashboard (`/dashboard?submitted=true&appId=...`) with an eye-catching CEGA-styled scrutiny queue confirmation banner in `src/app/dashboard/page.tsx`
 - Dynamic Application Tracker confirmation banner on `/applications/[id]/track?submitted=true`
 - Dedicated Application Tracking Portal (`/track` and `/track/[applicationId]`) featuring application selector with search & status filters (`ALL`, `IN PROCESS`, `RESUBMIT`, `COMPLETED`, `ARCHIVED`), 6-stage vertical verification timeline with worker portal reviewer handoff (`assignedWorker`), stage-wise comments & rejection trail, and interactive in-place document resubmission (`portalService.resubmitDocument`)
 - Next.js Turbopack configuration with `@tailwindcss/turbopack` loader rules for seamless Tailwind CSS v4 institutional design token compilation
-- Comprehensive test suite with 41 passing integration and unit tests across 7 test suites (100% passing)
+- Comprehensive test suite with 42 passing integration and unit tests across 7 test suites (100% passing)
 
 ### In Progress
 

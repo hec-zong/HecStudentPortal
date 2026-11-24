@@ -239,17 +239,17 @@ export function StepAcademicHistory({
   return (
     <div className="space-y-6">
       {/* Header Info */}
-      <div className="flex flex-col justify-between gap-4 rounded-xl border border-slate-800 bg-slate-900 p-4 text-white sm:flex-row sm:items-center">
+      <div className="flex flex-col justify-between gap-4 rounded-2xl border border-[#e5e5e5] bg-white p-6 text-black shadow-[0_10px_28px_rgba(8,27,88,0.06)] sm:flex-row sm:items-center">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="flex items-center gap-2 text-base font-bold text-white sm:text-lg">
-              <GraduationCap className="size-5 text-emerald-400" />
+            <h2 className="flex items-center gap-2 text-base font-bold text-black sm:text-lg">
+              <GraduationCap className="size-5 text-[#13c2b6]" />
               <span>
                 Academic History & Pakistan Qualification Register (PQR)
               </span>
             </h2>
           </div>
-          <p className="mt-0.5 text-xs text-slate-300">
+          <p className="mt-0.5 text-xs text-[#666666]">
             Record all qualifying educational tiers sequentially. HEC
             attestation requires underlying SSC and HSSC verification.
           </p>
@@ -258,7 +258,7 @@ export function StepAcademicHistory({
         <Button
           type="button"
           onClick={handleAddDegree}
-          className="shrink-0 gap-1.5 bg-emerald-600 text-xs font-semibold text-white hover:bg-emerald-500"
+          className="shrink-0 gap-1.5 bg-[#13c2b6] text-xs font-bold text-black hover:bg-[#27b2d7]"
         >
           <PlusCircle className="size-3.5" />
           <span>Add Another Degree</span>
@@ -279,19 +279,19 @@ export function StepAcademicHistory({
           return (
             <Card
               key={rec.id}
-              className={`border transition-all ${
+              className={`rounded-2xl border transition-all ${
                 rec.isExpanded
-                  ? 'border-emerald-500/50 shadow-md ring-1 ring-emerald-500/20'
-                  : 'border-border hover:border-border/80'
+                  ? 'border-[#13c2b6] bg-white shadow-[0_10px_28px_rgba(8,27,88,0.08)] ring-1 ring-[#13c2b6]/25'
+                  : 'border-[#e5e5e5] bg-white shadow-[0_10px_28px_rgba(8,27,88,0.04)] hover:border-[#87cbde]'
               }`}
             >
               {/* Card Header (Clickable for expand/collapse) */}
               <CardHeader
                 onClick={() => handleToggleExpand(rec.id)}
-                className="flex cursor-pointer flex-row items-center justify-between gap-4 p-4 select-none sm:p-5"
+                className="flex cursor-pointer flex-row items-center justify-between gap-4 p-5 select-none sm:p-6"
               >
                 <div className="flex min-w-0 items-center gap-3">
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#87cbde]/15 text-[#27b2d7]">
                     <GraduationCap className="size-5" />
                   </div>
 
@@ -500,7 +500,7 @@ export function StepAcademicHistory({
                                       programTitle: p.programName,
                                     })
                                   }
-                                  className="bg-muted border-border rounded-full border px-2 py-0.5 text-[10px] transition-colors hover:bg-emerald-500/20 hover:text-emerald-600 dark:hover:text-emerald-400"
+                                  className="bg-muted border-border rounded-full border px-2 py-0.5 text-[10px] transition-colors hover:bg-[#87cbde]/20 hover:text-[#27b2d7]"
                                 >
                                   {p.programName.split('(')[0].trim()}
                                 </button>
@@ -696,7 +696,7 @@ export function StepAcademicHistory({
                     <Button
                       type="button"
                       onClick={() => handleSaveCard(rec.id)}
-                      className="h-8 shrink-0 gap-1.5 bg-emerald-600 text-xs font-semibold text-white hover:bg-emerald-500"
+                      className="h-8 shrink-0 gap-1.5 bg-[#13c2b6] text-xs font-bold text-black hover:bg-[#27b2d7]"
                     >
                       <Save className="size-3.5" />
                       <span>Save & Collapse Card</span>

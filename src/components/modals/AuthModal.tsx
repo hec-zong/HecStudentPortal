@@ -80,12 +80,12 @@ export function AuthModal() {
               variant="outline"
               size="sm"
               onClick={handleQuickReturning}
-              className="bg-background flex h-auto flex-col items-start border-emerald-600/30 px-2.5 py-2 text-left hover:border-emerald-600"
+              className="flex h-auto flex-col items-start rounded-xl border-[#13c2b6]/40 bg-[#f6fbfe] px-3 py-2 text-left hover:border-[#13c2b6]"
             >
-              <span className="text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+              <span className="text-xs font-bold text-black">
                 Returning Student
               </span>
-              <span className="text-muted-foreground text-[10px] leading-tight">
+              <span className="text-[10px] leading-tight text-[#666666]">
                 Hamza (4 applications)
               </span>
             </Button>
@@ -95,12 +95,12 @@ export function AuthModal() {
               variant="outline"
               size="sm"
               onClick={handleQuickFirstTime}
-              className="border-primary/30 hover:border-primary bg-background flex h-auto flex-col items-start px-2.5 py-2 text-left"
+              className="flex h-auto flex-col items-start rounded-xl border-[#87cbde]/50 bg-[#f6fbfe] px-3 py-2 text-left hover:border-[#27b2d7]"
             >
-              <span className="text-primary text-xs font-semibold">
+              <span className="text-xs font-bold text-[#27b2d7]">
                 First-Time Student
               </span>
-              <span className="text-muted-foreground text-[10px] leading-tight">
+              <span className="text-[10px] leading-tight text-[#666666]">
                 Ayesha (Start new app)
               </span>
             </Button>

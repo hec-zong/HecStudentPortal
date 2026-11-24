@@ -146,21 +146,23 @@ export function InlineFileDropzone({
             type="button"
             onClick={() => triggerOcrAutoFill(fileName)}
             disabled={isScanningOcr}
-            className="flex cursor-pointer items-center gap-1 text-[10px] font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
+            className="flex cursor-pointer items-center gap-1 text-[10px] font-semibold text-[#27b2d7] hover:text-[#13c2b6]"
           >
             {isScanningOcr ? (
               <>
-                <RefreshCw className="size-3 animate-spin" />
+                <RefreshCw className="size-3 animate-spin text-[#13c2b6]" />
                 <span>Reading MRZ / OCR...</span>
               </>
             ) : ocrSuccess ? (
               <>
-                <CheckCircle2 className="size-3 text-emerald-500" />
-                <span>Auto-Filled from CNIC</span>
+                <CheckCircle2 className="size-3 text-[#13c2b6]" />
+                <span className="font-bold text-[#13c2b6]">
+                  Auto-Filled from CNIC
+                </span>
               </>
             ) : (
               <>
-                <Sparkles className="size-3" />
+                <Sparkles className="size-3 text-[#13c2b6]" />
                 <span>Extract via NADRA OCR</span>
               </>
             )}
@@ -185,38 +187,38 @@ export function InlineFileDropzone({
           onDragLeave={() => setIsDragging(false)}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed p-4 text-center transition-all sm:p-5 ${
+          className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-5 text-center transition-all ${
             isDragging
-              ? 'border-emerald-500 bg-emerald-500/10'
+              ? 'border-[#13c2b6] bg-[#87cbde]/10'
               : error
                 ? 'border-destructive bg-destructive/5'
-                : 'border-border bg-card hover:bg-muted/40 hover:border-emerald-500/60'
+                : 'border-[#e5e5e5] bg-white hover:border-[#13c2b6] hover:bg-[#f6fbfe]'
           }`}
         >
-          <div className="bg-muted text-muted-foreground flex size-9 items-center justify-center rounded-xl transition-transform group-hover:scale-105">
-            <Upload className="text-primary size-4" />
+          <div className="flex size-10 items-center justify-center rounded-xl border border-[#e5e5e5] bg-[#f6fbfe] text-[#27b2d7] transition-transform group-hover:scale-105">
+            <Upload className="size-4 text-[#13c2b6]" />
           </div>
 
           <div className="space-y-0.5">
-            <span className="text-foreground block text-xs font-semibold">
+            <span className="block text-xs font-semibold text-black">
               {config?.instruction ||
                 'Click to browse or drop document scan here'}
             </span>
-            <span className="text-muted-foreground block text-[11px]">
+            <span className="block text-[11px] text-[#666666]">
               Supports {acceptExtensions} (Up to {maxSizeMb} MB)
             </span>
           </div>
         </div>
       ) : (
-        <div className="flex items-center justify-between gap-3 rounded-xl border border-emerald-500/40 bg-emerald-500/5 p-3.5">
+        <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#13c2b6]/40 bg-[#f6fbfe] p-4">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-emerald-600/10 text-emerald-600 dark:text-emerald-400">
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#13c2b6]/15 text-[#13c2b6]">
               <FileText className="size-5" />
             </div>
 
             <div className="min-w-0 space-y-0.5">
               <div className="flex items-center gap-2">
-                <span className="text-foreground block max-w-[200px] truncate text-xs font-semibold sm:max-w-xs">
+                <span className="block max-w-[200px] truncate text-xs font-semibold text-black sm:max-w-xs">
                   {fileName}
                 </span>
                 <Badge
@@ -227,7 +229,7 @@ export function InlineFileDropzone({
                 </Badge>
               </div>
 
-              <span className="text-muted-foreground block font-mono text-[10px]">
+              <span className="block font-mono text-[10px] text-[#666666]">
                 {fileSize} • Scanned Document
               </span>
             </div>
@@ -239,7 +241,7 @@ export function InlineFileDropzone({
               variant="outline"
               size="sm"
               onClick={() => fileInputRef.current?.click()}
-              className="h-7 px-2 text-xs"
+              className="h-8 border-[#e5e5e5] bg-white px-2.5 text-xs text-black hover:border-[#27b2d7] hover:bg-[#f6fbfe]"
               title="Replace file"
             >
               Replace
@@ -250,7 +252,7 @@ export function InlineFileDropzone({
               variant="ghost"
               size="sm"
               onClick={handleRemove}
-              className="text-muted-foreground hover:text-destructive h-7 px-2"
+              className="h-8 px-2 text-[#666666] hover:bg-white hover:text-black"
               title="Remove document"
             >
               <X className="size-3.5" />

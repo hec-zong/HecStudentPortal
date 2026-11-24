@@ -193,20 +193,25 @@ export function DynamicFormWizard({
     ((currentStepIndex + 1) / totalSteps) * 100
   );
 
-  const handleFieldChange = (field: string, value: unknown) => {
-    setFormValues((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-    // Clear validation error on change
-    if (validationErrors[field]) {
+  const handleFieldChange = React.useCallback(
+    (field: string, value: unknown) => {
+      setFormValues((prev) => {
+        if (prev[field] === value) return prev;
+        return {
+          ...prev,
+          [field]: value,
+        };
+      });
+      // Clear validation error on change
       setValidationErrors((prev) => {
+        if (!prev[field]) return prev;
         const next = { ...prev };
         delete next[field];
         return next;
       });
-    }
-  };
+    },
+    []
+  );
 
   const handleSaveDraft = () => {
     setIsSaving(true);
@@ -322,13 +327,13 @@ export function DynamicFormWizard({
         attestationSelection: selections,
       });
       router.push(
-        `/applications/${encodeURIComponent(res.applicationId)}/track?submitted=true`
+        `/dashboard?submitted=true&appId=${encodeURIComponent(res.applicationId)}`
       );
     } catch (e) {
       console.error('Submission failed:', e);
       const fallbackAppId = `#APP-2026-${Math.floor(1000 + Math.random() * 9000)}`;
       router.push(
-        `/applications/${encodeURIComponent(fallbackAppId)}/track?submitted=true`
+        `/dashboard?submitted=true&appId=${encodeURIComponent(fallbackAppId)}`
       );
     } finally {
       setIsSubmitting(false);
@@ -338,7 +343,7 @@ export function DynamicFormWizard({
   return (
     <div className="mx-auto max-w-7xl space-y-6">
       {/* 1. Top Horizontal Step Indicator */}
-      <div className="bg-card border-border overflow-x-auto rounded-2xl border p-4 shadow-sm sm:p-6">
+      <div className="overflow-x-auto rounded-2xl border border-[#e5e5e5] bg-white p-4 shadow-[0_10px_28px_rgba(8,27,88,0.06)] sm:p-6">
         <div className="flex min-w-[620px] items-center justify-between">
           {steps.map((step, idx) => {
             const isCompleted = idx < currentStepIndex;
@@ -355,12 +360,12 @@ export function DynamicFormWizard({
                   className={`group flex cursor-pointer items-center gap-3 select-none`}
                 >
                   <div
-                    className={`flex size-9 items-center justify-center rounded-xl text-xs font-bold transition-all ${
+                    className={`flex size-10 items-center justify-center rounded-xl text-xs font-bold transition-all ${
                       isCompleted
-                        ? 'bg-emerald-600 text-white shadow-sm'
+                        ? 'bg-[#13c2b6] font-bold text-black shadow-sm'
                         : isCurrent
-                          ? 'bg-primary text-primary-foreground ring-primary/20 shadow-md ring-4'
-                          : 'bg-muted text-muted-foreground border-border border'
+                          ? 'bg-[#13c2b6] font-bold text-black shadow-md ring-4 ring-[#13c2b6]/25'
+                          : 'border border-[#e5e5e5] bg-[#f6fbfe] text-[#666666]'
                     }`}
                   >
                     {isCompleted ? (
@@ -371,16 +376,16 @@ export function DynamicFormWizard({
                   </div>
 
                   <div className="space-y-0.5">
-                    <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+                    <span className="block text-[10px] font-bold tracking-wider text-[#666666] uppercase">
                       Step 0{step.stepNumber}
                     </span>
                     <span
                       className={`block text-xs font-semibold transition-colors ${
                         isCurrent
-                          ? 'text-primary'
+                          ? 'font-bold text-[#27b2d7]'
                           : isCompleted
-                            ? 'text-foreground font-medium'
-                            : 'text-muted-foreground'
+                            ? 'font-medium text-black'
+                            : 'text-[#666666]'
                       }`}
                     >
                       {step.shortTitle || step.title.split('&')[0].trim()}
@@ -390,10 +395,10 @@ export function DynamicFormWizard({
 
                 {/* Connecting Line between steps */}
                 {idx < steps.length - 1 && (
-                  <div className="bg-border mx-3 h-0.5 flex-1 overflow-hidden rounded-full sm:mx-4">
+                  <div className="mx-3 h-0.5 flex-1 overflow-hidden rounded-full bg-[#e5e5e5] sm:mx-4">
                     <div
                       className={`h-full transition-all duration-300 ${
-                        idx < currentStepIndex ? 'w-full bg-emerald-500' : 'w-0'
+                        idx < currentStepIndex ? 'w-full bg-[#13c2b6]' : 'w-0'
                       }`}
                     />
                   </div>
@@ -409,12 +414,12 @@ export function DynamicFormWizard({
         {/* 2. Left Vertical Step / Application Sidebar */}
         <aside className="space-y-4 lg:sticky lg:top-20 lg:col-span-1">
           {/* Application Metadata Card */}
-          <Card className="border-border shadow-sm">
-            <CardHeader className="space-y-1 pb-3">
-              <span className="text-muted-foreground block font-mono text-[10px] tracking-wider uppercase">
+          <Card className="rounded-2xl border-[#e5e5e5] bg-white shadow-[0_10px_28px_rgba(8,27,88,0.06)]">
+            <CardHeader className="space-y-1 p-6 pb-3">
+              <span className="block font-mono text-[10px] tracking-wider text-[#666666] uppercase">
                 Dossier Identifier
               </span>
-              <CardTitle className="text-primary flex items-center justify-between font-mono text-sm font-bold">
+              <CardTitle className="flex items-center justify-between font-mono text-sm font-bold text-black">
                 <span>{applicationId}</span>
                 <Badge variant="inProgress" className="text-[9px]">
                   Draft
@@ -422,28 +427,28 @@ export function DynamicFormWizard({
               </CardTitle>
             </CardHeader>
 
-            <CardContent className="space-y-4 text-xs">
+            <CardContent className="space-y-4 p-6 pt-0 text-xs">
               {/* Step Progress Percentage */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground font-medium">
+                  <span className="font-medium text-[#666666]">
                     Wizard Progress
                   </span>
-                  <span className="font-extrabold text-emerald-600 dark:text-emerald-400">
+                  <span className="font-extrabold text-[#13c2b6]">
                     {progressPercentage}%
                   </span>
                 </div>
-                <div className="bg-muted border-border/50 h-2 w-full overflow-hidden rounded-full border">
+                <div className="h-2 w-full overflow-hidden rounded-full border border-[#e5e5e5] bg-[#f6fbfe]">
                   <div
-                    className="h-2 rounded-full bg-emerald-500 transition-all duration-300"
+                    className="h-2 rounded-full bg-[#13c2b6] transition-all duration-300"
                     style={{ width: `${progressPercentage}%` }}
                   />
                 </div>
               </div>
 
               {/* Vertical Step Checklist */}
-              <div className="border-border space-y-2 border-t pt-2">
-                <span className="text-muted-foreground block text-[10px] font-bold tracking-wider uppercase">
+              <div className="space-y-2 border-t border-[#e5e5e5] pt-3">
+                <span className="block text-[10px] font-bold tracking-wider text-[#666666] uppercase">
                   Workflow Checklist
                 </span>
 
@@ -459,19 +464,19 @@ export function DynamicFormWizard({
                           setCurrentStepIndex(idx);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className={`flex cursor-pointer items-center justify-between gap-2 rounded-lg p-2 text-xs transition-colors ${
+                        className={`flex cursor-pointer items-center justify-between gap-2 rounded-xl p-2.5 text-xs transition-colors ${
                           isCurrent
-                            ? 'bg-primary/10 text-primary border-primary/20 border font-bold'
+                            ? 'border border-[#13c2b6] bg-[#f6fbfe] font-bold text-black shadow-sm'
                             : isCompleted
-                              ? 'text-foreground hover:bg-muted'
-                              : 'text-muted-foreground opacity-60'
+                              ? 'text-black hover:bg-[#f6fbfe]'
+                              : 'text-[#666666] opacity-75'
                         }`}
                       >
                         <div className="flex items-center gap-2 truncate">
                           {isCompleted ? (
-                            <CheckCircle2 className="size-3.5 shrink-0 text-emerald-500" />
+                            <CheckCircle2 className="size-3.5 shrink-0 text-[#13c2b6]" />
                           ) : (
-                            <span className="border-border flex size-3.5 shrink-0 items-center justify-center rounded-full border font-mono text-[9px]">
+                            <span className="flex size-4 shrink-0 items-center justify-center rounded-full border border-[#e5e5e5] bg-[#f6fbfe] font-mono text-[9px] text-[#666666]">
                               {step.stepNumber}
                             </span>
                           )}
@@ -483,7 +488,7 @@ export function DynamicFormWizard({
                         {isCurrent && (
                           <Badge
                             variant="inProgress"
-                            className="px-1 py-0 text-[8px]"
+                            className="px-1.5 py-0 text-[8px]"
                           >
                             Active
                           </Badge>
@@ -495,15 +500,15 @@ export function DynamicFormWizard({
               </div>
 
               {/* Save Draft & Demo Actions */}
-              <div className="border-border space-y-2 border-t pt-3">
+              <div className="space-y-2 border-t border-[#e5e5e5] pt-3">
                 <Button
                   type="button"
                   variant="secondary"
                   size="sm"
                   onClick={handleFillAllDemoData}
-                  className="w-full gap-1.5 border border-emerald-500/30 bg-emerald-500/10 text-xs font-semibold text-emerald-700 hover:bg-emerald-500/20 dark:text-emerald-300"
+                  className="w-full gap-1.5 border border-[#87cbde]/50 bg-[#87cbde]/20 text-xs font-bold text-black hover:bg-[#87cbde]/35"
                 >
-                  <Sparkles className="size-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <Sparkles className="size-3.5 text-[#27b2d7]" />
                   <span>Auto-Fill Demo Data</span>
                 </Button>
 
@@ -513,17 +518,17 @@ export function DynamicFormWizard({
                   size="sm"
                   onClick={handleSaveDraft}
                   disabled={isSaving}
-                  className="w-full gap-1.5 text-xs font-semibold"
+                  className="w-full gap-1.5 border-[#e5e5e5] bg-white text-xs font-semibold text-black hover:border-[#27b2d7] hover:bg-[#f6fbfe]"
                 >
                   {isSaving ? (
-                    <RefreshCw className="size-3.5 animate-spin" />
+                    <RefreshCw className="size-3.5 animate-spin text-[#13c2b6]" />
                   ) : (
-                    <Save className="text-primary size-3.5" />
+                    <Save className="size-3.5 text-[#13c2b6]" />
                   )}
                   <span>{isSaving ? 'Saving...' : 'Save Draft'}</span>
                 </Button>
 
-                <span className="text-muted-foreground block text-center font-mono text-[10px]">
+                <span className="block text-center font-mono text-[10px] text-[#666666]">
                   {savedTime}
                 </span>
               </div>
@@ -531,14 +536,14 @@ export function DynamicFormWizard({
           </Card>
 
           {/* Institutional Help Support Badge */}
-          <div className="border-border bg-muted/40 space-y-1 rounded-xl border p-3.5 text-xs">
-            <span className="text-foreground flex items-center gap-1.5 font-semibold">
-              <HelpCircle className="text-primary size-3.5" />
+          <div className="space-y-1 rounded-2xl border border-[#e5e5e5] bg-[#f6fbfe] p-4 text-xs">
+            <span className="flex items-center gap-1.5 font-bold text-black">
+              <HelpCircle className="size-3.5 text-[#13c2b6]" />
               <span>Need Help?</span>
             </span>
-            <p className="text-muted-foreground text-[11px] leading-relaxed">
+            <p className="text-[11px] leading-relaxed text-[#666666]">
               HEC Verification Desk Hotline:{' '}
-              <strong className="text-foreground">051-111-119-432</strong>
+              <strong className="text-black">051-111-119-432</strong>
             </p>
           </div>
         </aside>
@@ -550,7 +555,7 @@ export function DynamicFormWizard({
             <div className="flex flex-wrap items-center gap-2">
               <Badge
                 variant="outline"
-                className="text-primary border-primary/30 text-xs"
+                className="border-[#87cbde]/50 bg-[#f6fbfe] text-xs font-semibold text-[#27b2d7]"
               >
                 Step {currentStep?.stepNumber || 1} of {totalSteps}
               </Badge>
@@ -558,16 +563,14 @@ export function DynamicFormWizard({
                 <Sparkles className="size-3" />
                 Demo Data Active
               </Badge>
-              <span className="text-muted-foreground hidden font-mono text-xs sm:inline">
+              <span className="hidden font-mono text-xs text-[#666666] sm:inline">
                 Synapark Engine Protocol v2.4
               </span>
             </div>
-            <h2 className="text-foreground text-xl font-bold tracking-tight sm:text-2xl">
+            <h2 className="text-xl font-bold tracking-tight text-black sm:text-2xl">
               {currentStep?.title}
             </h2>
-            <p className="text-muted-foreground text-xs">
-              {currentStep?.description}
-            </p>
+            <p className="text-xs text-[#666666]">{currentStep?.description}</p>
           </div>
 
           {/* Render Step Components based on Current Step */}
@@ -615,20 +618,20 @@ export function DynamicFormWizard({
               onChange={handleFieldChange}
               onSubmitSuccess={(submittedAppId: string) => {
                 router.push(
-                  `/applications/${encodeURIComponent(submittedAppId)}/track?submitted=true`
+                  `/dashboard?submitted=true&appId=${encodeURIComponent(submittedAppId)}`
                 );
               }}
             />
           )}
 
           {/* 3. Bottom Navigation Bar */}
-          <div className="border-border bg-card flex items-center justify-between gap-3 rounded-xl border p-4 shadow-sm">
+          <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#e5e5e5] bg-white p-4 shadow-[0_10px_28px_rgba(8,27,88,0.06)]">
             <Button
               type="button"
               variant="outline"
               onClick={handlePrevStep}
               disabled={currentStepIndex === 0}
-              className="gap-1.5 text-xs font-semibold"
+              className="gap-1.5 border-[#e5e5e5] text-xs font-semibold text-black hover:border-[#27b2d7] hover:bg-[#f6fbfe]"
             >
               <ArrowLeft className="size-3.5" />
               <span>Previous Step</span>
@@ -639,7 +642,7 @@ export function DynamicFormWizard({
                 type="button"
                 variant="ghost"
                 onClick={handleSaveDraft}
-                className="text-muted-foreground hover:text-foreground hidden gap-1.5 text-xs font-medium sm:inline-flex"
+                className="hidden gap-1.5 text-xs font-medium text-[#666666] hover:bg-[#f6fbfe] hover:text-black sm:inline-flex"
               >
                 <Save className="size-3.5" />
                 <span>Save Progress</span>
@@ -649,7 +652,7 @@ export function DynamicFormWizard({
                 type="button"
                 onClick={handleNextStep}
                 disabled={isSubmitting}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground gap-1.5 text-xs font-semibold shadow-sm"
+                className="gap-1.5 bg-[#13c2b6] text-xs font-bold text-black shadow-[0_10px_28px_rgba(8,27,88,0.08)] hover:bg-[#27b2d7]"
               >
                 {isSubmitting ? (
                   <>

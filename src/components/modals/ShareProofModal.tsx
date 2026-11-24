@@ -66,48 +66,44 @@ export function ShareProofModal() {
 
         <div className="space-y-4 pt-1">
           {/* Credential Card Preview */}
-          <div className="space-y-2 rounded-lg border border-emerald-600/30 bg-emerald-50/40 p-3.5 dark:bg-emerald-950/20">
+          <div className="space-y-2 rounded-2xl border border-[#13c2b6]/30 bg-[#f6fbfe] p-4 text-black">
             <div className="flex items-center justify-between">
               <Badge variant="approved" className="text-[10px]">
                 HEC Verified Digital Stamp
               </Badge>
-              <span className="text-muted-foreground font-mono text-[11px]">
+              <span className="font-mono text-[11px] text-[#666666]">
                 {firstAsset.serialNumber}
               </span>
             </div>
             <div>
-              <p className="text-foreground text-sm font-semibold">
-                {firstAsset.title}
-              </p>
-              <p className="text-muted-foreground text-xs">
-                {firstAsset.university}
-              </p>
+              <p className="text-sm font-bold text-black">{firstAsset.title}</p>
+              <p className="text-xs text-[#666666]">{firstAsset.university}</p>
             </div>
-            <div className="border-border/50 text-muted-foreground flex items-center gap-2 border-t pt-1 font-mono text-[11px]">
-              <ShieldCheck className="size-3.5 text-emerald-600" />
+            <div className="flex items-center gap-2 border-t border-[#e5e5e5] pt-2 font-mono text-[11px] text-[#666666]">
+              <ShieldCheck className="size-3.5 text-[#13c2b6]" />
               <span>SHA-256: {firstAsset.verificationHash}</span>
             </div>
           </div>
 
           {/* Copyable Share URL */}
           <div className="space-y-1.5">
-            <label className="text-foreground text-xs font-medium">
+            <label className="text-xs font-semibold text-black">
               Public Verification URL
             </label>
             <div className="flex gap-2">
               <Input
                 readOnly
                 value={shareUrl}
-                className="bg-muted/40 font-mono text-xs select-all"
+                className="border-[#e5e5e5] bg-[#f6fbfe] font-mono text-xs text-black select-all"
               />
               <Button
                 type="button"
                 variant="outline"
                 onClick={handleCopy}
-                className="shrink-0 gap-1 text-xs font-semibold"
+                className="shrink-0 gap-1 border-[#e5e5e5] text-xs font-semibold text-black hover:border-[#27b2d7] hover:bg-[#f6fbfe]"
               >
                 {copied ? (
-                  <Check className="size-3.5 text-emerald-600" />
+                  <Check className="size-3.5 text-[#13c2b6]" />
                 ) : (
                   <Copy className="size-3.5" />
                 )}

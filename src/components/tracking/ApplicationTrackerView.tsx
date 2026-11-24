@@ -287,8 +287,8 @@ export function ApplicationTrackerView({
     switch (status) {
       case 'approved':
         return (
-          <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-extrabold text-emerald-700 dark:text-emerald-300">
-            <CheckCircle2 className="size-3" />
+          <span className="inline-flex items-center gap-1 rounded-full border border-[#13c2b6]/40 bg-[#13c2b6]/15 px-2.5 py-0.5 text-[10px] font-extrabold text-[#0b746d]">
+            <CheckCircle2 className="size-3 text-[#13c2b6]" />
             {stageName === 'completed_dispatched'
               ? 'MINTED'
               : stageName === 'submitted'
@@ -298,21 +298,21 @@ export function ApplicationTrackerView({
         );
       case 'in_progress':
         return (
-          <span className="inline-flex animate-pulse items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-extrabold text-amber-700 dark:text-amber-300">
-            <Clock className="size-3" />
+          <span className="inline-flex animate-pulse items-center gap-1 rounded-full border border-[#27b2d7]/40 bg-[#27b2d7]/15 px-2.5 py-0.5 text-[10px] font-extrabold text-[#117690]">
+            <Clock className="size-3 text-[#27b2d7]" />
             IN PROGRESS
           </span>
         );
       case 'resubmit_required':
         return (
-          <span className="inline-flex items-center gap-1 rounded-full border border-rose-500/30 bg-rose-500/15 px-2.5 py-0.5 text-[10px] font-extrabold text-rose-700 dark:text-rose-300">
-            <AlertTriangle className="size-3" />
+          <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/40 bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-extrabold text-amber-700">
+            <AlertTriangle className="size-3 text-amber-600" />
             REJECTED / RESUBMIT
           </span>
         );
       default:
         return (
-          <span className="bg-muted text-muted-foreground border-border inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold">
+          <span className="inline-flex items-center gap-1 rounded-full border border-[#e5e5e5] bg-[#f6fbfe] px-2.5 py-0.5 text-[10px] font-semibold text-[#666666]">
             PENDING
           </span>
         );
@@ -323,16 +323,16 @@ export function ApplicationTrackerView({
     <div className="space-y-6">
       {/* 1. Submission Confirmation Banner (When arriving from application wizard) */}
       {isJustSubmitted && (
-        <div className="animate-in fade-in slide-in-from-top-4 flex flex-col items-start justify-between gap-4 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-emerald-950 shadow-sm duration-500 sm:flex-row sm:items-center dark:text-emerald-100">
+        <div className="animate-in fade-in slide-in-from-top-4 flex flex-col items-start justify-between gap-4 rounded-2xl border border-[#13c2b6]/30 bg-[#f6fbfe] p-6 text-black shadow-[0_10px_28px_rgba(8,27,88,0.06)] duration-500 sm:flex-row sm:items-center">
           <div className="flex items-start gap-3.5">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-md">
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#13c2b6] font-bold text-black shadow-sm">
               <CheckCircle2 className="size-6" />
             </div>
             <div className="space-y-1">
-              <h3 className="text-sm font-bold text-emerald-800 sm:text-base dark:text-emerald-200">
+              <h3 className="text-sm font-bold text-black sm:text-base">
                 Application Transmitted to HEC Worker Portal Scrutiny Queue
               </h3>
-              <p className="max-w-2xl text-xs leading-relaxed text-emerald-700 dark:text-emerald-300">
+              <p className="max-w-2xl text-xs leading-relaxed text-[#666666]">
                 Your attestation dossier (<strong>{selectedAppId}</strong>) has
                 been logged in the Synapark workflow engine. Preliminary
                 verification by the Scrutiny Desk is underway. You will receive
@@ -456,8 +456,8 @@ export function ApplicationTrackerView({
                       onClick={() => handleSelectApplication(app.id)}
                       className={`relative cursor-pointer rounded-xl border p-3.5 transition-all ${
                         isSelected
-                          ? 'border-emerald-600 bg-emerald-500/5 shadow-sm ring-1 ring-emerald-500/30'
-                          : 'border-border bg-card hover:bg-muted/30'
+                          ? 'border-[#13c2b6] bg-[#f6fbfe] shadow-[0_10px_28px_rgba(8,27,88,0.06)] ring-1 ring-[#13c2b6]/25'
+                          : 'border-[#e5e5e5] bg-white hover:bg-[#f6fbfe]'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-2">
@@ -538,26 +538,26 @@ export function ApplicationTrackerView({
           ) : (
             <div className="space-y-6">
               {/* Active Application Dossier Header */}
-              <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-6 text-white shadow-xl">
-                <div className="pointer-events-none absolute top-0 right-0 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
+              <div className="relative overflow-hidden rounded-2xl border border-[#e5e5e5] bg-white p-6 text-black shadow-[0_10px_28px_rgba(8,27,88,0.06)]">
+                <div className="pointer-events-none absolute top-0 right-0 h-64 w-64 rounded-full bg-[#87cbde]/15 blur-3xl" />
 
                 <div className="relative z-10 flex flex-col justify-between gap-4 md:flex-row md:items-center">
                   <div className="space-y-1.5">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded border border-slate-700 bg-slate-800 px-2.5 py-1 font-mono text-xs font-bold text-emerald-400">
+                      <span className="rounded-xl border border-[#e5e5e5] bg-[#f6fbfe] px-2.5 py-1 font-mono text-xs font-bold text-black">
                         {activeAppDetail.id}
                       </span>
                       {renderStatusBadge(activeAppDetail.overallStatus)}
                     </div>
 
-                    <h3 className="text-lg font-bold tracking-tight text-white sm:text-xl">
+                    <h3 className="font-heading text-lg font-extrabold tracking-tight text-black sm:text-xl">
                       {activeAppDetail.serviceType}
                     </h3>
 
-                    <div className="flex flex-wrap items-center gap-3 text-xs text-slate-300">
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-[#666666]">
                       <span className="flex items-center gap-1 font-mono">
                         Tracking ID:{' '}
-                        <strong className="text-emerald-400">
+                        <strong className="text-[#27b2d7]">
                           {activeAppDetail.trackingId}
                         </strong>
                         <button
@@ -565,10 +565,10 @@ export function ApplicationTrackerView({
                           onClick={() =>
                             copyTrackingId(activeAppDetail.trackingId)
                           }
-                          className="ml-1 hover:text-white"
+                          className="ml-1 hover:text-black"
                         >
                           {copiedTracking ? (
-                            <Check className="size-3 text-emerald-400" />
+                            <Check className="size-3 text-[#13c2b6]" />
                           ) : (
                             <Copy className="size-3" />
                           )}
@@ -590,7 +590,7 @@ export function ApplicationTrackerView({
                       <Button
                         type="button"
                         onClick={() => router.push('/assets')}
-                        className="gap-1.5 bg-emerald-600 text-xs font-semibold text-white hover:bg-emerald-500"
+                        className="gap-1.5 bg-[#13c2b6] text-xs font-bold text-black hover:bg-[#27b2d7]"
                       >
                         <Eye className="size-3.5" />
                         <span>View Degree</span>
@@ -602,8 +602,8 @@ export function ApplicationTrackerView({
 
               {/* Resubmit Success Alert if resolved */}
               {resubmitSuccessMessage && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-xs text-emerald-900 dark:text-emerald-200">
-                  <CheckCircle2 className="size-4 shrink-0 text-emerald-600" />
+                <div className="flex items-center gap-2.5 rounded-xl border border-[#13c2b6]/30 bg-[#f6fbfe] p-4 text-xs text-black">
+                  <CheckCircle2 className="size-4 shrink-0 text-[#13c2b6]" />
                   <span>{resubmitSuccessMessage}</span>
                 </div>
               )}
@@ -651,12 +651,12 @@ export function ApplicationTrackerView({
                           <div
                             className={`ring-background absolute top-0 -left-6 flex size-6 items-center justify-center rounded-full text-xs font-bold ring-4 transition-all sm:-left-8 sm:size-7 ${
                               isCompleted
-                                ? 'bg-emerald-600 text-white'
+                                ? 'bg-[#13c2b6] font-bold text-black ring-[#13c2b6]/20'
                                 : isInProgress
-                                  ? 'animate-pulse bg-amber-500 text-white ring-amber-500/20'
+                                  ? 'animate-pulse bg-[#27b2d7] text-white ring-[#27b2d7]/20'
                                   : isRejected
-                                    ? 'bg-rose-600 text-white ring-rose-500/20'
-                                    : 'bg-muted text-muted-foreground border-border border'
+                                    ? 'bg-amber-500 font-bold text-black ring-amber-500/20'
+                                    : 'border border-[#e5e5e5] bg-[#f6fbfe] text-[#666666]'
                             }`}
                           >
                             {isCompleted ? (
@@ -778,8 +778,8 @@ export function ApplicationTrackerView({
 
                                     {/* Resolved status or Interactive Resubmission Form */}
                                     {comment.resolvedAt ? (
-                                      <div className="flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-2.5 text-[11px] text-emerald-800 dark:text-emerald-300">
-                                        <CheckCircle2 className="size-4 shrink-0 text-emerald-600" />
+                                      <div className="flex items-center gap-2 rounded-xl border border-[#13c2b6]/30 bg-[#f6fbfe] p-3 text-[11px] text-black">
+                                        <CheckCircle2 className="size-4 shrink-0 text-[#13c2b6]" />
                                         <span>
                                           Resolved on{' '}
                                           {new Date(
@@ -791,11 +791,11 @@ export function ApplicationTrackerView({
                                     ) : comment.isReuploadAllowed ? (
                                       <form
                                         onSubmit={handleResubmitDocument}
-                                        className="border-border bg-card mt-3 space-y-3 rounded-xl border p-3.5 text-xs"
+                                        className="mt-3 space-y-3 rounded-2xl border border-[#e5e5e5] bg-white p-4 text-xs shadow-sm"
                                       >
                                         <div className="flex items-center justify-between">
-                                          <span className="text-foreground flex items-center gap-1.5 font-bold">
-                                            <Upload className="text-primary size-3.5" />
+                                          <span className="flex items-center gap-1.5 font-bold text-black">
+                                            <Upload className="size-3.5 text-[#13c2b6]" />
                                             <span>
                                               Action Required: Re-upload
                                               Corrected Scan
@@ -803,7 +803,7 @@ export function ApplicationTrackerView({
                                           </span>
                                           <Badge
                                             variant="outline"
-                                            className="text-[9px]"
+                                            className="border-[#e5e5e5] text-[9px] text-[#666666]"
                                           >
                                             Target:{' '}
                                             {comment.affectedDocumentType ||
@@ -822,7 +822,7 @@ export function ApplicationTrackerView({
                                         />
 
                                         <div className="space-y-1">
-                                          <label className="text-foreground block text-[11px] font-semibold">
+                                          <label className="block text-[11px] font-semibold text-black">
                                             Applicant Response & Clarification
                                           </label>
                                           <textarea
@@ -831,7 +831,7 @@ export function ApplicationTrackerView({
                                               setStudentNote(e.target.value)
                                             }
                                             rows={2}
-                                            className="border-border bg-background w-full rounded-lg border p-2.5 text-xs"
+                                            className="w-full rounded-xl border border-[#e5e5e5] bg-white p-2.5 text-xs text-black focus-visible:border-[#13c2b6]"
                                             placeholder="Explain what was corrected..."
                                           />
                                         </div>
@@ -839,7 +839,7 @@ export function ApplicationTrackerView({
                                         <Button
                                           type="submit"
                                           disabled={isSubmittingResubmit}
-                                          className="w-full gap-1.5 bg-emerald-600 text-xs font-semibold text-white shadow-sm hover:bg-emerald-500"
+                                          className="w-full gap-1.5 bg-[#13c2b6] text-xs font-bold text-black shadow-[0_10px_28px_rgba(8,27,88,0.08)] hover:bg-[#27b2d7]"
                                         >
                                           {isSubmittingResubmit ? (
                                             <>
@@ -892,7 +892,7 @@ export function ApplicationTrackerView({
                         <span className="text-foreground font-bold">
                           {deg.programTitle}
                         </span>
-                        <span className="font-mono font-bold text-emerald-600">
+                        <span className="font-mono font-bold text-black">
                           PKR {deg.itemTotal.toLocaleString()}
                         </span>
                       </div>

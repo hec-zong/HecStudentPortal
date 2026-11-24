@@ -11,6 +11,8 @@ import {
   Sparkles,
   HelpCircle,
   Compass,
+  Menu,
+  X,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -26,6 +28,7 @@ import { useAppStore, type AuthStatus } from '@/store/use-app-store';
 
 export function Navbar() {
   const router = useRouter();
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const {
     authStatus,
     studentData,
@@ -56,24 +59,24 @@ export function Navbar() {
   };
 
   return (
-    <header className="border-border/70 bg-background/95 supports-[backdrop-filter]:bg-background/80 sticky top-0 z-40 w-full border-b backdrop-blur-md">
+    <header className="sticky top-0 z-40 w-full border-b border-[#e5e5e5] bg-white/95 backdrop-blur-md">
       {/* Top Government Strip */}
-      <div className="bg-primary/95 text-primary-foreground px-4 py-1 text-xs">
+      <div className="border-b border-[#e5e5e5] bg-[#f6fbfe] px-4 py-1.5 text-xs text-black">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="font-semibold tracking-wide">
+            <span className="font-bold tracking-wide text-black">
               GOVERNMENT OF PAKISTAN
             </span>
-            <span className="opacity-60">•</span>
-            <span className="opacity-90">
+            <span className="text-[#666666]">•</span>
+            <span className="text-[#666666]">
               Higher Education Commission (HEC) Official Portal
             </span>
           </div>
-          <div className="hidden items-center gap-4 text-[11px] opacity-90 sm:flex">
+          <div className="hidden items-center gap-4 text-[11px] text-[#666666] sm:flex">
             <span>UAN: 051-111-119-432</span>
             <span>•</span>
-            <span className="flex items-center gap-1">
-              <span className="size-2 animate-pulse rounded-full bg-emerald-300" />
+            <span className="flex items-center gap-1.5 font-medium text-black">
+              <span className="size-2 animate-pulse rounded-full bg-[#13c2b6]" />
               1-Link Billing & Synapark Live
             </span>
           </div>
@@ -87,22 +90,22 @@ export function Navbar() {
           href="/"
           className="group flex items-center gap-3 focus:outline-hidden"
         >
-          <div className="bg-primary text-primary-foreground flex size-10 items-center justify-center rounded-lg shadow-sm transition-transform group-hover:scale-105">
-            <GraduationCap className="size-6 text-white" />
+          <div className="flex size-10 items-center justify-center rounded-[12px] bg-[#13c2b6] text-black shadow-[0_4px_14px_rgba(19,194,182,0.3)] transition-transform group-hover:scale-105">
+            <GraduationCap className="size-6 text-black" />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="text-foreground text-lg leading-tight font-bold tracking-tight">
+              <span className="font-heading text-lg leading-tight font-bold tracking-tight text-black">
                 HEC E-Portal
               </span>
               <Badge
                 variant="outline"
-                className="border-primary/30 text-primary h-4 px-1.5 py-0 text-[10px]"
+                className="h-4 border-[#87cbde] bg-[#87cbde]/20 px-1.5 py-0 text-[10px] font-bold text-black"
               >
-                Official
+                CEGA
               </Badge>
             </div>
-            <span className="text-muted-foreground text-xs leading-none font-medium">
+            <span className="text-xs leading-none font-medium text-[#666666]">
               Higher Education Commission Pakistan
             </span>
           </div>
@@ -112,26 +115,26 @@ export function Navbar() {
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
           <Link
             href="/"
-            className="text-foreground/80 hover:text-primary hover:border-primary py-1 transition-colors hover:border-b-2"
+            className="text-black/80 transition-colors hover:text-[#13c2b6]"
           >
             Home
           </Link>
           <Link
             href="/journey"
-            className="text-foreground/80 hover:text-primary flex items-center gap-1.5 py-1 transition-colors"
+            className="flex items-center gap-1.5 py-1 text-black/80 transition-colors hover:text-[#13c2b6]"
           >
-            <Compass className="text-primary size-4" />
+            <Compass className="size-4 text-[#13c2b6]" />
             <span>Attestation Journey</span>
             <Badge
               variant="secondary"
-              className="bg-accent text-accent-foreground ml-0.5 text-[10px]"
+              className="ml-0.5 border-[#87cbde]/50 bg-[#87cbde]/30 text-[10px] text-black"
             >
               10 Steps
             </Badge>
           </Link>
           <Link
             href="/#services"
-            className="text-foreground/80 hover:text-primary py-1 transition-colors"
+            className="text-black/80 transition-colors hover:text-[#13c2b6]"
           >
             Services
           </Link>
@@ -139,15 +142,15 @@ export function Navbar() {
             href="https://hec.gov.pk"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground/80 hover:text-primary flex items-center gap-1 py-1 transition-colors"
+            className="flex items-center gap-1 text-black/80 transition-colors hover:text-[#13c2b6]"
           >
             <span>PQR Register</span>
           </a>
           <Link
             href="/#support"
-            className="text-foreground/80 hover:text-primary flex items-center gap-1 py-1 transition-colors"
+            className="flex items-center gap-1 text-black/80 transition-colors hover:text-[#13c2b6]"
           >
-            <HelpCircle className="text-muted-foreground size-4" />
+            <HelpCircle className="size-4 text-[#666666]" />
             <span>Support</span>
           </Link>
         </nav>
@@ -161,9 +164,9 @@ export function Navbar() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="hidden h-8 gap-1.5 border-dashed border-emerald-600/40 bg-emerald-50/50 font-mono text-xs text-emerald-900 sm:inline-flex dark:bg-emerald-950/20 dark:text-emerald-200"
+                  className="hidden h-8 gap-1.5 border border-[#87cbde]/60 bg-[#87cbde]/15 font-mono text-xs text-black hover:border-[#27b2d7] hover:bg-[#87cbde]/25 sm:inline-flex"
                 >
-                  <Sparkles className="size-3 text-emerald-600" />
+                  <Sparkles className="size-3 text-[#27b2d7]" />
                   <span className="font-sans font-semibold">Demo:</span>
                   <span className="capitalize">
                     {authStatus === 'returning'
@@ -312,8 +315,109 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           )}
+          {/* Mobile menu toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="rounded-lg p-2 text-[#666666] transition-colors hover:bg-[#f6fbfe] hover:text-black md:hidden"
+            aria-label={
+              mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+            }
+          >
+            {mobileMenuOpen ? (
+              <X className="size-5" />
+            ) : (
+              <Menu className="size-5" />
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Collapsible Navigation Menu */}
+      {mobileMenuOpen && (
+        <div className="border-t border-[#e5e5e5] bg-white px-4 py-4 shadow-lg md:hidden">
+          <nav className="flex flex-col space-y-3">
+            <Link
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-black hover:bg-[#f6fbfe] hover:text-[#13c2b6]"
+            >
+              Home
+            </Link>
+            <Link
+              href="/journey"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-black hover:bg-[#f6fbfe] hover:text-[#13c2b6]"
+            >
+              <div className="flex items-center gap-2">
+                <Compass className="size-4 text-[#13c2b6]" />
+                <span>Attestation Journey</span>
+              </div>
+              <Badge
+                variant="secondary"
+                className="border-[#87cbde]/50 bg-[#87cbde]/30 text-[10px] text-black"
+              >
+                10 Steps
+              </Badge>
+            </Link>
+            <Link
+              href="/#services"
+              onClick={() => setMobileMenuOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-black hover:bg-[#f6fbfe] hover:text-[#13c2b6]"
+            >
+              Services
+            </Link>
+            <a
+              href="https://hec.gov.pk"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-black hover:bg-[#f6fbfe] hover:text-[#13c2b6]"
+            >
+              PQR Register
+            </a>
+            <Link
+              href="/#support"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-black hover:bg-[#f6fbfe] hover:text-[#13c2b6]"
+            >
+              <HelpCircle className="size-4 text-[#666666]" />
+              <span>Support</span>
+            </Link>
+
+            {/* Mobile Demo Persona Switcher */}
+            <div className="border-t border-[#e5e5e5] pt-3">
+              <span className="block px-3 pb-2 text-[10px] font-bold tracking-wider text-[#666666] uppercase">
+                Simulate Persona
+              </span>
+              <div className="grid grid-cols-2 gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    handleDemoSwitch('returning');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`text-xs ${authStatus === 'returning' ? 'border-[#13c2b6] bg-[#13c2b6]/10 font-bold text-black' : ''}`}
+                >
+                  Returning
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    handleDemoSwitch('first_time');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`text-xs ${authStatus === 'first_time' ? 'border-[#13c2b6] bg-[#13c2b6]/10 font-bold text-black' : ''}`}
+                >
+                  First-Time
+                </Button>
+              </div>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

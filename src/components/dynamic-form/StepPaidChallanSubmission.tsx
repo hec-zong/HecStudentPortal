@@ -74,23 +74,6 @@ export function StepPaidChallanSubmission({
     (formValues.challanNumber as string) || 'HEC-CH-2024-88491';
   const totalAmount = (formValues.totalAmount as number) || 3700;
 
-  React.useEffect(() => {
-    onChange('paymentMode', paymentMode);
-    onChange('transactionReference', transactionReference);
-    onChange('paidAt', paidAt);
-    onChange('bankBranch', bankBranch);
-    onChange('paidReceiptUrl', paidReceiptUrl);
-    onChange('declarationAccepted', declarationAccepted);
-  }, [
-    paymentMode,
-    transactionReference,
-    paidAt,
-    bankBranch,
-    paidReceiptUrl,
-    declarationAccepted,
-    onChange,
-  ]);
-
   const handleFinalSubmit = async () => {
     const errs: Record<string, string> = {};
 
@@ -138,7 +121,7 @@ export function StepPaidChallanSubmission({
         onSubmitSuccess(result.applicationId);
       } else {
         router.push(
-          `/applications/${encodeURIComponent(result.applicationId)}/track?submitted=true`
+          `/dashboard?submitted=true&appId=${encodeURIComponent(result.applicationId)}`
         );
       }
     } catch (e) {
@@ -149,7 +132,7 @@ export function StepPaidChallanSubmission({
         onSubmitSuccess(fallbackAppId);
       } else {
         router.push(
-          `/applications/${encodeURIComponent(fallbackAppId)}/track?submitted=true`
+          `/dashboard?submitted=true&appId=${encodeURIComponent(fallbackAppId)}`
         );
       }
     } finally {
@@ -164,11 +147,11 @@ export function StepPaidChallanSubmission({
       {/* 1. Step Header & Summary */}
       <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
         <div className="space-y-0.5">
-          <h3 className="text-foreground flex items-center gap-2 text-base font-bold sm:text-lg">
-            <ShieldCheck className="size-5 text-emerald-600" />
+          <h3 className="flex items-center gap-2 text-base font-bold text-black sm:text-lg">
+            <ShieldCheck className="size-5 text-[#13c2b6]" />
             <span>Step 5: Paid Challan Submission & Worker Portal Handoff</span>
           </h3>
-          <p className="text-muted-foreground text-xs">
+          <p className="text-xs text-[#666666]">
             Enter payment confirmation details, upload your stamped receipt, and
             submit your dossier to the HEC Scrutiny Wing.
           </p>
@@ -176,38 +159,38 @@ export function StepPaidChallanSubmission({
 
         <Badge
           variant="outline"
-          className="text-primary border-primary/30 self-start font-mono text-xs sm:self-center"
+          className="self-start border-[#87cbde]/50 bg-[#f6fbfe] font-mono text-xs text-[#27b2d7] sm:self-center"
         >
           Step 5 of 5
         </Badge>
       </div>
 
       {/* 2. Fee Settlement Summary Banner */}
-      <div className="bg-card border-border flex flex-col justify-between gap-4 rounded-xl border p-4 shadow-sm sm:flex-row sm:items-center">
+      <div className="flex flex-col justify-between gap-4 rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-[0_10px_28px_rgba(8,27,88,0.06)] sm:flex-row sm:items-center">
         <div className="flex items-center gap-3">
-          <div className="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-xl">
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#87cbde]/15 text-[#27b2d7]">
             <Receipt className="size-5" />
           </div>
           <div className="space-y-0.5">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-foreground text-xs font-bold">
+              <span className="text-xs font-bold text-black">
                 Dossier: {applicationId} &bull; Voucher: {challanNumber}
               </span>
               <Badge variant="inProgress" className="text-[9px]">
                 PSID: {psid}
               </Badge>
             </div>
-            <p className="text-muted-foreground text-[11px]">
+            <p className="text-[11px] text-[#666666]">
               Statutory attestation fee for selected degrees and courier return.
             </p>
           </div>
         </div>
 
         <div className="text-left sm:text-right">
-          <span className="text-muted-foreground block text-[10px] font-bold uppercase">
+          <span className="block text-[10px] font-bold text-[#666666] uppercase">
             Settlement Amount
           </span>
-          <span className="font-mono text-lg font-bold text-emerald-600 sm:text-xl dark:text-emerald-400">
+          <span className="font-heading text-lg font-extrabold text-black sm:text-xl">
             PKR {totalAmount.toLocaleString()}
           </span>
         </div>
@@ -235,7 +218,11 @@ export function StepPaidChallanSubmission({
               </Label>
               <select
                 value={paymentMode}
-                onChange={(e) => setPaymentMode(e.target.value as PaymentMode)}
+                onChange={(e) => {
+                  const val = e.target.value as PaymentMode;
+                  setPaymentMode(val);
+                  onChange('paymentMode', val);
+                }}
                 className="border-border bg-background h-9 w-full rounded-lg border px-3 text-xs"
               >
                 <option value="1link_atm_mobile">
@@ -257,7 +244,11 @@ export function StepPaidChallanSubmission({
               <Input
                 type="text"
                 value={transactionReference}
-                onChange={(e) => setTransactionReference(e.target.value)}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setTransactionReference(val);
+                  onChange('transactionReference', val);
+                }}
                 placeholder="e.g. FT240989123891 or Scroll 88192"
                 className={`h-9 font-mono text-xs ${
                   activeErrors.transactionReference ? 'border-destructive' : ''
@@ -278,7 +269,11 @@ export function StepPaidChallanSubmission({
               <Input
                 type="date"
                 value={paidAt}
-                onChange={(e) => setPaidAt(e.target.value)}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setPaidAt(val);
+                  onChange('paidAt', val);
+                }}
                 className="h-9 text-xs"
               />
             </div>
@@ -293,7 +288,11 @@ export function StepPaidChallanSubmission({
                 <Input
                   type="text"
                   value={bankBranch}
-                  onChange={(e) => setBankBranch(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setBankBranch(val);
+                    onChange('bankBranch', val);
+                  }}
                   placeholder="e.g. HBL Sector H-9 Islamabad Branch (Code 0418)"
                   className="h-9 text-xs"
                 />
@@ -316,7 +315,11 @@ export function StepPaidChallanSubmission({
                 instruction:
                   'Drag & drop bank receipt scan or mobile transaction screenshot',
               }}
-              onFileChange={(url) => setPaidReceiptUrl(url || '')}
+              onFileChange={(url) => {
+                const val = url || '';
+                setPaidReceiptUrl(val);
+                onChange('paidReceiptUrl', val);
+              }}
             />
           </div>
         </CardContent>
@@ -357,7 +360,11 @@ export function StepPaidChallanSubmission({
             <Checkbox
               id="solemn-declaration"
               checked={declarationAccepted}
-              onCheckedChange={(c) => setDeclarationAccepted(Boolean(c))}
+              onCheckedChange={(c) => {
+                const val = Boolean(c);
+                setDeclarationAccepted(val);
+                onChange('declarationAccepted', val);
+              }}
               className="mt-0.5"
             />
             <div className="space-y-1">
@@ -383,9 +390,9 @@ export function StepPaidChallanSubmission({
       </Card>
 
       {/* 7. Dedicated Submit Action Row */}
-      <div className="border-border bg-card flex flex-col justify-between gap-3 rounded-xl border p-4 shadow-sm sm:flex-row sm:items-center">
-        <div className="text-muted-foreground flex items-center gap-2 text-xs">
-          <ShieldCheck className="size-4 text-emerald-600" />
+      <div className="flex flex-col justify-between gap-3 rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-[0_10px_28px_rgba(8,27,88,0.06)] sm:flex-row sm:items-center">
+        <div className="flex items-center gap-2 text-xs text-[#666666]">
+          <ShieldCheck className="size-4 text-[#13c2b6]" />
           <span>Encrypted transmission to HEC Scrutiny Registry</span>
         </div>
 
@@ -393,7 +400,7 @@ export function StepPaidChallanSubmission({
           type="button"
           onClick={handleFinalSubmit}
           disabled={isSubmitting}
-          className="gap-2 bg-emerald-600 px-6 text-xs font-bold text-white shadow-md shadow-emerald-950/20 hover:bg-emerald-500"
+          className="gap-2 bg-[#13c2b6] px-6 text-xs font-bold text-black shadow-[0_10px_28px_rgba(8,27,88,0.08)] hover:bg-[#27b2d7]"
         >
           {isSubmitting ? (
             <>

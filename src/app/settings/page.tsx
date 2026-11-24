@@ -59,21 +59,21 @@ export default function SettingsPage() {
       <div className="mx-auto max-w-5xl space-y-8">
         {/* Notice alert */}
         {saveSuccess && (
-          <div className="flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs text-emerald-600 dark:text-emerald-400">
-            <CheckCircle2 className="size-4 shrink-0" />
+          <div className="flex items-center gap-2 rounded-xl border border-[#13c2b6]/30 bg-[#f6fbfe] p-3 text-xs text-black">
+            <CheckCircle2 className="size-4 shrink-0 text-[#13c2b6]" />
             <span>{saveSuccess}</span>
           </div>
         )}
 
         {/* Header Banner */}
-        <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-6 text-white shadow-xl sm:p-8">
-          <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl" />
+        <div className="relative overflow-hidden rounded-2xl border border-[#e5e5e5] bg-white p-6 text-black shadow-[0_10px_28px_rgba(8,27,88,0.06)] sm:p-8">
+          <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-[#87cbde]/15 blur-3xl" />
 
           <div className="relative z-10 space-y-2">
             <div className="flex items-center gap-2">
               <Badge
                 variant="outline"
-                className="border-emerald-400/40 text-xs text-emerald-400"
+                className="border-[#13c2b6]/40 bg-[#f6fbfe] text-xs text-[#27b2d7]"
               >
                 Security & Preferences
               </Badge>
@@ -83,11 +83,11 @@ export default function SettingsPage() {
               </Badge>
             </div>
 
-            <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            <h1 className="font-heading text-2xl font-extrabold tracking-tight text-black sm:text-3xl">
               Account Preferences & Security Settings
             </h1>
 
-            <p className="max-w-2xl text-xs text-slate-300 sm:text-sm">
+            <p className="max-w-2xl text-xs text-[#666666] sm:text-sm">
               Configure communication channels for forensic attestation
               milestones, update password credentials, and audit active
               sessions.
@@ -229,7 +229,7 @@ export default function SettingsPage() {
 
               <Button
                 type="submit"
-                className="gap-1.5 bg-emerald-600 text-xs font-semibold text-white hover:bg-emerald-500"
+                className="gap-1.5 bg-[#13c2b6] text-xs font-bold text-black hover:bg-[#27b2d7]"
               >
                 <Lock className="size-3.5" />
                 <span>Save New Password</span>
@@ -253,7 +253,7 @@ export default function SettingsPage() {
           <CardContent className="space-y-3">
             <div className="border-border bg-muted/40 flex items-center justify-between rounded-xl border p-3.5">
               <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-500">
+                <div className="flex size-10 items-center justify-center rounded-lg bg-[#13c2b6]/15 text-[#13c2b6]">
                   <Laptop className="size-5" />
                 </div>
                 <div>

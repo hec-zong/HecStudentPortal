@@ -32,15 +32,15 @@ export function TrackLookupModal() {
       open={isOpen}
       onOpenChange={(open) => !open && setActiveModal(null)}
     >
-      <DialogContent className="bg-card border-border sm:max-w-md">
+      <DialogContent className="rounded-2xl border-[#e5e5e5] bg-white shadow-xl sm:max-w-md">
         <DialogHeader className="space-y-2 text-left">
-          <div className="mb-1 flex size-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">
+          <div className="mb-1 flex size-10 items-center justify-center rounded-xl bg-[#87cbde]/15 text-[#27b2d7]">
             <Search className="size-5" />
           </div>
-          <DialogTitle className="text-xl font-bold tracking-tight">
+          <DialogTitle className="font-heading text-xl font-bold tracking-tight text-black">
             Track Application Status
           </DialogTitle>
-          <DialogDescription className="text-muted-foreground text-sm">
+          <DialogDescription className="text-sm text-[#666666]">
             Enter your Synapark Application ID or 1-Link PSID to view real-time
             scrutiny stages and controller comments.
           </DialogDescription>
@@ -74,7 +74,7 @@ export function TrackLookupModal() {
               <button
                 type="button"
                 onClick={() => handleSearch('#APP-2024-9981')}
-                className="inline-flex items-center gap-1 rounded-md border border-amber-200/60 bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-800 transition-colors hover:bg-amber-100 dark:bg-amber-950/30 dark:text-amber-300"
+                className="inline-flex items-center gap-1 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs font-semibold text-amber-700 transition-colors hover:bg-amber-500/20"
               >
                 <span>#APP-2024-9981</span>
                 <span className="text-[10px] opacity-75">(L1 Resubmit)</span>
@@ -82,15 +82,15 @@ export function TrackLookupModal() {
               <button
                 type="button"
                 onClick={() => handleSearch('#APP-2024-1022')}
-                className="inline-flex items-center gap-1 rounded-md border border-emerald-200/60 bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-800 transition-colors hover:bg-emerald-100 dark:bg-emerald-950/30 dark:text-emerald-300"
+                className="inline-flex items-center gap-1 rounded-lg border border-[#13c2b6]/30 bg-[#f6fbfe] px-2.5 py-1 text-xs font-semibold text-black transition-colors hover:border-[#13c2b6]"
               >
                 <span>#APP-2024-1022</span>
-                <span className="text-[10px] opacity-75">(Dispatched)</span>
+                <span className="text-[10px] text-[#27b2d7]">(Dispatched)</span>
               </button>
               <button
                 type="button"
                 onClick={() => handleSearch('#App-001')}
-                className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-800 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200"
+                className="inline-flex items-center gap-1 rounded-lg border border-[#e5e5e5] bg-[#f6fbfe] px-2.5 py-1 text-xs font-semibold text-[#666666] transition-colors hover:border-[#27b2d7] hover:text-black"
               >
                 <span>#App-001</span>
                 <span className="text-[10px] opacity-75">(In Scrutiny)</span>

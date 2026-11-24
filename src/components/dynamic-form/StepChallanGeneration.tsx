@@ -139,38 +139,36 @@ export function StepChallanGeneration({
       </div>
 
       {/* 2. Hero PSID Highlight Card */}
-      <Card className="from-card via-card relative overflow-hidden border-emerald-600/30 bg-gradient-to-br to-emerald-950/10 shadow-sm">
+      <Card className="relative overflow-hidden rounded-2xl border border-[#e5e5e5] bg-white text-black shadow-[0_10px_28px_rgba(8,27,88,0.06)]">
         <div className="pointer-events-none absolute top-0 right-0 p-8 opacity-5">
           <CreditCard className="size-48" />
         </div>
 
-        <CardHeader className="border-border/60 border-b pb-3">
+        <CardHeader className="border-b border-[#e5e5e5] p-6 pb-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <span className="text-muted-foreground block font-mono text-[10px] tracking-wider uppercase">
+              <span className="block font-mono text-[10px] tracking-wider text-[#666666] uppercase">
                 1-Link Consumer Number (PSID)
               </span>
               <Badge variant="inProgress" className="text-[9px]">
                 Valid for 7 Days
               </Badge>
             </div>
-            <span className="text-muted-foreground font-mono text-xs">
+            <span className="font-mono text-xs text-[#666666]">
               Voucher No:{' '}
-              <strong className="text-foreground">
-                {challan.challanNumber}
-              </strong>
+              <strong className="text-black">{challan.challanNumber}</strong>
             </span>
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-4 pt-4">
-          <div className="bg-muted/40 border-border flex flex-col justify-between gap-4 rounded-xl border p-4 md:flex-row md:items-center">
+        <CardContent className="space-y-4 p-6 pt-4">
+          <div className="flex flex-col justify-between gap-4 rounded-2xl border border-[#e5e5e5] bg-[#f6fbfe] p-4 md:flex-row md:items-center">
             <div className="space-y-1">
-              <span className="text-muted-foreground block text-[11px] font-bold tracking-wider uppercase">
+              <span className="block text-[11px] font-bold tracking-wider text-[#666666] uppercase">
                 17-Digit 1-Link PSID / Consumer ID
               </span>
               <div className="flex items-center gap-3">
-                <span className="font-mono text-xl font-black tracking-wider text-emerald-600 sm:text-2xl dark:text-emerald-400">
+                <span className="font-heading text-xl font-extrabold tracking-wider text-black sm:text-2xl">
                   {formattedPsid}
                 </span>
                 <Button
@@ -178,12 +176,12 @@ export function StepChallanGeneration({
                   size="sm"
                   variant="outline"
                   onClick={copyPsidToClipboard}
-                  className="h-8 gap-1.5 text-xs font-semibold"
+                  className="h-8 gap-1.5 border-[#e5e5e5] bg-white text-xs font-semibold text-black hover:border-[#27b2d7] hover:bg-[#f6fbfe]"
                 >
                   {hasCopiedPsid ? (
                     <>
-                      <Check className="size-3 text-emerald-500" />
-                      <span>Copied</span>
+                      <Check className="size-3 text-[#13c2b6]" />
+                      <span className="font-bold text-[#13c2b6]">Copied</span>
                     </>
                   ) : (
                     <>
@@ -195,14 +193,14 @@ export function StepChallanGeneration({
               </div>
             </div>
 
-            <div className="border-border space-y-0.5 border-t pt-3 text-left md:border-t-0 md:border-l md:pt-0 md:pl-6 md:text-right">
-              <span className="text-muted-foreground block text-[11px] font-bold uppercase">
+            <div className="space-y-0.5 border-t border-[#e5e5e5] pt-3 text-left md:border-t-0 md:border-l md:pt-0 md:pl-6 md:text-right">
+              <span className="block text-[11px] font-bold text-[#666666] uppercase">
                 Total Amount Due
               </span>
-              <span className="text-foreground font-mono text-2xl font-black">
+              <span className="font-heading text-2xl font-extrabold text-black sm:text-3xl">
                 PKR {challan.totalAmount.toLocaleString()}
               </span>
-              <span className="text-muted-foreground block text-[10px]">
+              <span className="block text-[10px] text-[#666666]">
                 Due Date: {challan.dueDate}
               </span>
             </div>
@@ -294,7 +292,7 @@ export function StepChallanGeneration({
                   >
                     Grand Total Payable (PKR):
                   </td>
-                  <td className="px-4 py-3 text-right font-mono text-sm text-emerald-600 dark:text-emerald-400">
+                  <td className="px-4 py-3 text-right font-mono text-sm font-bold text-black">
                     PKR {challan.totalAmount.toLocaleString()}
                   </td>
                 </tr>
@@ -307,12 +305,12 @@ export function StepChallanGeneration({
       {/* 4. Payment Channels & Guidance */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {/* Mobile Banking */}
-        <div className="border-border bg-card space-y-2 rounded-xl border p-4 shadow-sm">
-          <div className="text-foreground flex items-center gap-2 text-xs font-bold">
-            <Smartphone className="size-4 text-emerald-600" />
+        <div className="space-y-2 rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-[0_10px_28px_rgba(8,27,88,0.04)]">
+          <div className="flex items-center gap-2 text-xs font-bold text-black">
+            <Smartphone className="size-4 text-[#13c2b6]" />
             <span>Mobile Banking / ATM (1-Bill)</span>
           </div>
-          <p className="text-muted-foreground text-[11px] leading-relaxed">
+          <p className="text-[11px] leading-relaxed text-[#666666]">
             Open EasyPaisa, JazzCash, Nayapay, HBL Mobile, or Meezan. Select{' '}
             <strong>Bill Payment &gt; 1-Bill</strong>, and paste your 17-digit
             PSID.
@@ -320,24 +318,24 @@ export function StepChallanGeneration({
         </div>
 
         {/* Kuickpay */}
-        <div className="border-border bg-card space-y-2 rounded-xl border p-4 shadow-sm">
-          <div className="text-foreground flex items-center gap-2 text-xs font-bold">
-            <CreditCard className="text-primary size-4" />
+        <div className="space-y-2 rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-[0_10px_28px_rgba(8,27,88,0.04)]">
+          <div className="flex items-center gap-2 text-xs font-bold text-black">
+            <CreditCard className="size-4 text-[#27b2d7]" />
             <span>Kuickpay Portal</span>
           </div>
-          <p className="text-muted-foreground text-[11px] leading-relaxed">
+          <p className="text-[11px] leading-relaxed text-[#666666]">
             Pay via Kuickpay checkout using debit card or Internet banking with
             institutional merchant code <strong>HEC01</strong>.
           </p>
         </div>
 
         {/* Bank Counter */}
-        <div className="border-border bg-card space-y-2 rounded-xl border p-4 shadow-sm">
-          <div className="text-foreground flex items-center gap-2 text-xs font-bold">
-            <Building2 className="text-primary size-4" />
+        <div className="space-y-2 rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-[0_10px_28px_rgba(8,27,88,0.04)]">
+          <div className="flex items-center gap-2 text-xs font-bold text-black">
+            <Building2 className="size-4 text-[#27b2d7]" />
             <span>Bank Branch Counter</span>
           </div>
-          <p className="text-muted-foreground text-[11px] leading-relaxed">
+          <p className="text-[11px] leading-relaxed text-[#666666]">
             Print this challan voucher and deposit cash over-the-counter at any
             branch of <strong>Habib Bank Ltd (HBL)</strong> or{' '}
             <strong>NBP</strong> nationwide.
@@ -348,11 +346,11 @@ export function StepChallanGeneration({
       {/* 5. Print / Download Challan Modal */}
       {showPrintModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/60 p-4 backdrop-blur-sm">
-          <div className="bg-card border-border my-8 w-full max-w-4xl space-y-6 rounded-2xl border p-6 shadow-2xl">
-            <div className="border-border flex items-center justify-between border-b pb-3">
+          <div className="my-8 w-full max-w-4xl space-y-6 rounded-2xl border border-[#e5e5e5] bg-white p-6 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-[#e5e5e5] pb-3">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="size-5 text-emerald-600" />
-                <h4 className="text-foreground text-base font-bold">
+                <ShieldCheck className="size-5 text-[#13c2b6]" />
+                <h4 className="text-base font-bold text-black">
                   Official HEC E-Challan Fee Voucher (Printable Preview)
                 </h4>
               </div>
@@ -425,7 +423,7 @@ export function StepChallanGeneration({
                     <div className="border-border space-y-1 border-t pt-2">
                       <div className="flex justify-between text-xs font-bold">
                         <span>Total (PKR):</span>
-                        <span className="font-mono text-emerald-600">
+                        <span className="font-mono font-bold text-black">
                           PKR {challan.totalAmount.toLocaleString()}
                         </span>
                       </div>

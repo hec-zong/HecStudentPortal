@@ -151,22 +151,22 @@ export default function AssetsPage() {
       <div className="mx-auto max-w-7xl space-y-8">
         {/* Download notification */}
         {downloadNotice && (
-          <div className="flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs text-emerald-600 dark:text-emerald-400">
-            <CheckCircle2 className="size-4 shrink-0" />
+          <div className="flex items-center gap-2 rounded-xl border border-[#13c2b6]/30 bg-[#f6fbfe] p-3 text-xs text-black">
+            <CheckCircle2 className="size-4 shrink-0 text-[#13c2b6]" />
             <span>{downloadNotice}</span>
           </div>
         )}
 
         {/* Header Banner */}
-        <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-6 text-white shadow-xl sm:p-8">
-          <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl" />
+        <div className="relative overflow-hidden rounded-2xl border border-[#e5e5e5] bg-white p-6 text-black shadow-[0_10px_28px_rgba(8,27,88,0.06)] sm:p-8">
+          <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-[#87cbde]/15 blur-3xl" />
 
           <div className="relative z-10 flex flex-col justify-between gap-6 md:flex-row md:items-center">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Badge
                   variant="outline"
-                  className="border-emerald-400/40 text-xs text-emerald-400"
+                  className="border-[#13c2b6]/40 bg-[#f6fbfe] text-xs text-[#27b2d7]"
                 >
                   National Digital Credential Registry
                 </Badge>
@@ -176,11 +176,11 @@ export default function AssetsPage() {
                 </Badge>
               </div>
 
-              <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+              <h1 className="font-heading text-2xl font-extrabold tracking-tight text-black sm:text-3xl">
                 My Degrees & Digital Assets Vault
               </h1>
 
-              <p className="max-w-2xl text-xs text-slate-300 sm:text-sm">
+              <p className="max-w-2xl text-xs text-[#666666] sm:text-sm">
                 Tamper-evident, cryptographically sealed academic credentials
                 verified under the Higher Education Commission Ordinance.
                 Recognized by international universities and overseas foreign
@@ -191,7 +191,7 @@ export default function AssetsPage() {
             <div className="flex shrink-0 items-center gap-2.5">
               <Button
                 onClick={() => router.push('/apply')}
-                className="gap-1.5 bg-emerald-600 text-xs font-semibold text-white shadow-lg shadow-emerald-950/50 hover:bg-emerald-500"
+                className="gap-1.5 bg-[#13c2b6] text-xs font-bold text-black shadow-[0_10px_28px_rgba(8,27,88,0.08)] hover:bg-[#27b2d7]"
               >
                 <PlusCircle className="size-3.5" />
                 <span>Attest New Degree</span>
@@ -200,9 +200,9 @@ export default function AssetsPage() {
               <Button
                 variant="outline"
                 onClick={() => setActiveModal('share_proof')}
-                className="gap-1.5 border-slate-700 bg-slate-800 text-xs text-slate-200 hover:bg-slate-700"
+                className="gap-1.5 border-[#e5e5e5] bg-white text-xs font-semibold text-black hover:border-[#27b2d7] hover:bg-[#f6fbfe]"
               >
-                <Share2 className="size-3.5 text-emerald-400" />
+                <Share2 className="size-3.5 text-[#13c2b6]" />
                 <span>Share Proof</span>
               </Button>
             </div>
@@ -211,12 +211,12 @@ export default function AssetsPage() {
 
         {/* Search Bar */}
         <div className="relative max-w-md">
-          <Search className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
+          <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-[#666666]" />
           <Input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search verified credentials, universities, or document scans..."
-            className="bg-card h-10 pl-9 text-xs"
+            className="h-10 border-[#e5e5e5] bg-white pl-9 text-xs text-black placeholder:text-[#666666]"
           />
         </div>
 
@@ -246,65 +246,65 @@ export default function AssetsPage() {
               filteredWalletItems.map((item) => (
                 <Card
                   key={item.id}
-                  className="bg-card border-border relative overflow-hidden transition-all hover:border-emerald-500/40 hover:shadow-md"
+                  className="relative overflow-hidden rounded-2xl border-[#e5e5e5] bg-white shadow-[0_10px_28px_rgba(8,27,88,0.06)] transition-all hover:border-[#13c2b6]"
                 >
-                  <div className="pointer-events-none absolute top-0 right-0 h-28 w-28 rounded-bl-full bg-emerald-500/5" />
+                  <div className="pointer-events-none absolute top-0 right-0 h-28 w-28 rounded-bl-full bg-[#87cbde]/10" />
 
-                  <CardHeader className="space-y-3 pb-3">
+                  <CardHeader className="space-y-3 p-6 pb-3">
                     <div className="flex items-center justify-between">
                       <Badge variant="approved" className="gap-1 text-[11px]">
                         <CheckCircle2 className="size-3.5" />
                         Forensically Sealed
                       </Badge>
 
-                      <span className="text-muted-foreground font-mono text-xs font-semibold">
+                      <span className="font-mono text-xs font-semibold text-[#666666]">
                         {item.serialNumber}
                       </span>
                     </div>
 
                     <div>
-                      <CardTitle className="text-foreground text-base font-bold">
+                      <CardTitle className="text-base font-bold text-black">
                         {item.title}
                       </CardTitle>
-                      <CardDescription className="text-muted-foreground mt-1 flex items-center gap-1.5 text-xs">
-                        <Building2 className="text-primary size-3.5" />
+                      <CardDescription className="mt-1 flex items-center gap-1.5 text-xs text-[#666666]">
+                        <Building2 className="size-3.5 text-[#13c2b6]" />
                         <span>{item.university}</span>
                       </CardDescription>
                     </div>
                   </CardHeader>
 
-                  <CardContent className="text-muted-foreground space-y-3 text-xs">
-                    <div className="bg-muted/60 border-border/50 grid grid-cols-2 gap-2 rounded-xl border p-3 font-mono text-[11px]">
+                  <CardContent className="space-y-3 p-6 pt-0 text-xs text-[#666666]">
+                    <div className="grid grid-cols-2 gap-2 rounded-xl border border-[#e5e5e5] bg-[#f6fbfe] p-3 font-mono text-[11px]">
                       <div>
-                        <span className="text-muted-foreground block text-[10px]">
+                        <span className="block text-[10px] text-[#666666]">
                           PROGRAM
                         </span>
-                        <span className="text-foreground font-semibold">
+                        <span className="font-semibold text-black">
                           {item.programName}
                         </span>
                       </div>
                       <div>
-                        <span className="text-muted-foreground block text-[10px]">
+                        <span className="block text-[10px] text-[#666666]">
                           ATTESTATION DATE
                         </span>
-                        <span className="text-foreground font-semibold">
+                        <span className="font-semibold text-black">
                           {item.attestationDate}
                         </span>
                       </div>
-                      <div className="border-border/50 col-span-2 border-t pt-1">
-                        <span className="text-muted-foreground block text-[10px]">
+                      <div className="col-span-2 border-t border-[#e5e5e5] pt-1">
+                        <span className="block text-[10px] text-[#666666]">
                           ISSUED BY
                         </span>
-                        <span className="text-foreground font-medium">
+                        <span className="font-medium text-black">
                           {item.issuedBy}
                         </span>
                       </div>
                       <div className="col-span-2 space-y-1">
-                        <span className="text-muted-foreground block text-[10px]">
+                        <span className="block text-[10px] text-[#666666]">
                           CRYPTOGRAPHIC VERIFICATION HASH
                         </span>
-                        <div className="bg-background border-border flex items-center justify-between rounded border p-1.5">
-                          <span className="max-w-[260px] truncate font-mono text-[10px] text-emerald-600 dark:text-emerald-400">
+                        <div className="flex items-center justify-between rounded-xl border border-[#e5e5e5] bg-white p-2">
+                          <span className="max-w-[260px] truncate font-mono text-[10px] font-bold text-black">
                             {item.verificationHash}
                           </span>
                           <button
@@ -312,10 +312,10 @@ export default function AssetsPage() {
                             onClick={() =>
                               handleCopyHash(item.verificationHash)
                             }
-                            className="text-muted-foreground hover:text-foreground ml-1 flex shrink-0 items-center gap-1 text-[10px]"
+                            className="ml-1 flex shrink-0 items-center gap-1 text-[10px] text-[#666666] hover:text-black"
                           >
                             {copiedHash === item.verificationHash ? (
-                              <Check className="size-3 text-emerald-500" />
+                              <Check className="size-3 text-[#13c2b6]" />
                             ) : (
                               <Copy className="size-3" />
                             )}
@@ -325,21 +325,21 @@ export default function AssetsPage() {
                     </div>
                   </CardContent>
 
-                  <CardFooter className="border-border/50 flex items-center justify-between gap-3 border-t pt-2">
+                  <CardFooter className="flex items-center justify-between gap-3 border-t border-[#e5e5e5] p-6 pt-3">
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleDownloadPdf(item.serialNumber)}
-                      className="gap-1.5 text-xs"
+                      className="gap-1.5 border-[#e5e5e5] text-xs text-black hover:border-[#27b2d7] hover:bg-[#f6fbfe]"
                     >
-                      <Download className="text-primary size-3.5" />
+                      <Download className="size-3.5 text-[#13c2b6]" />
                       <span>Download PDF</span>
                     </Button>
 
                     <Button
                       size="sm"
                       onClick={() => setActiveModal('share_proof')}
-                      className="gap-1.5 bg-emerald-600 text-xs text-white hover:bg-emerald-500"
+                      className="gap-1.5 bg-[#13c2b6] text-xs font-bold text-black hover:bg-[#27b2d7]"
                     >
                       <QrCode className="size-3.5" />
                       <span>Verify & Share QR</span>
@@ -400,7 +400,7 @@ export default function AssetsPage() {
                 </CardContent>
 
                 <CardFooter className="border-border/50 flex items-center justify-between border-t pt-2">
-                  <span className="flex items-center gap-1 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                  <span className="flex items-center gap-1 text-[10px] font-semibold text-[#13c2b6]">
                     <ShieldCheck className="size-3" />
                     Encrypted Scan
                   </span>

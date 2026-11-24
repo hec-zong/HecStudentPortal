@@ -8,7 +8,6 @@ import {
   GraduationCap,
   FolderArchive,
   Compass,
-  Scale,
   Settings,
   HelpCircle,
   Bell,
@@ -21,6 +20,8 @@ import {
   Clock,
   Sparkles,
   ChevronDown,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -61,11 +62,6 @@ const NAV_ITEMS: NavItem[] = [
     badge: 'Vault',
   },
   {
-    name: 'Equivalence',
-    href: '/apply?service=equivalence',
-    icon: Scale,
-  },
-  {
     name: 'My Profile',
     href: '/profile',
     icon: User,
@@ -90,6 +86,7 @@ export function PortalShell({ children }: PortalShellProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [isSidebarMinimized, setIsSidebarMinimized] = React.useState(false);
 
   const {
     authStatus,
@@ -135,31 +132,59 @@ export function PortalShell({ children }: PortalShellProps) {
 
       {/* Left Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col justify-between border-r border-slate-800 bg-slate-950 text-slate-200 transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 flex flex-col justify-between border-r border-[#e5e5e5] bg-white text-black transition-all duration-300 ease-in-out lg:translate-x-0 ${
           mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-        } shrink-0 lg:static lg:w-64`}
+        } shrink-0 lg:static ${isSidebarMinimized ? 'w-72 lg:w-20' : 'w-72 lg:w-64'}`}
       >
         <div className="flex flex-1 flex-col overflow-y-auto">
           {/* HEC Attestation Branding Header */}
-          <div className="flex items-center justify-between border-b border-slate-800/80 p-5">
-            <Link href="/dashboard" className="group flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-xl border border-emerald-400/20 bg-gradient-to-br from-emerald-500 to-teal-700 font-bold text-white shadow-md shadow-emerald-950/40 transition-transform group-hover:scale-105">
-                <GraduationCap className="size-5" />
+          <div
+            className={`flex items-center ${
+              isSidebarMinimized
+                ? 'justify-between lg:justify-center'
+                : 'justify-between'
+            } border-b border-[#e5e5e5] p-4 lg:p-5`}
+          >
+            <Link
+              href="/dashboard"
+              className="group flex items-center gap-3"
+              title="HEC Attestation E-Portal"
+            >
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-[12px] bg-[#13c2b6] text-black shadow-sm transition-transform group-hover:scale-105">
+                <GraduationCap className="size-5 text-black" />
               </div>
-              <div>
-                <span className="block text-base font-bold tracking-tight text-white transition-colors group-hover:text-emerald-400">
+              <div className={isSidebarMinimized ? 'block lg:hidden' : 'block'}>
+                <span className="font-heading block text-base font-bold tracking-tight text-black transition-colors group-hover:text-[#13c2b6]">
                   HEC Attestation
                 </span>
-                <span className="text-[11px] font-medium text-slate-400">
+                <span className="text-[11px] font-medium text-[#666666]">
                   Govt of Pakistan E-Portal
                 </span>
               </div>
             </Link>
 
+            {/* Desktop Minimize Toggle in Sidebar Header */}
+            <button
+              type="button"
+              onClick={() => setIsSidebarMinimized(!isSidebarMinimized)}
+              className="hidden rounded-lg p-1.5 text-[#666666] transition-colors hover:bg-[#f6fbfe] hover:text-black lg:inline-flex"
+              aria-label={
+                isSidebarMinimized ? 'Expand sidebar' : 'Minimize sidebar'
+              }
+              title={isSidebarMinimized ? 'Expand sidebar' : 'Minimize sidebar'}
+            >
+              {isSidebarMinimized ? (
+                <PanelLeftOpen className="size-4" />
+              ) : (
+                <PanelLeftClose className="size-4" />
+              )}
+            </button>
+
+            {/* Mobile Close Button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
-              className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white lg:hidden"
+              className="rounded-lg p-1.5 text-[#666666] hover:bg-[#f6fbfe] hover:text-black lg:hidden"
               aria-label="Close menu"
             >
               <X className="size-5" />
@@ -167,8 +192,12 @@ export function PortalShell({ children }: PortalShellProps) {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 space-y-1.5 p-4">
-            <div className="px-3 pb-2 text-[10px] font-bold tracking-wider text-slate-400 uppercase">
+          <nav className="flex-1 space-y-1.5 p-3 lg:p-4">
+            <div
+              className={`px-3 pb-2 text-[10px] font-bold tracking-wider text-[#666666] uppercase ${
+                isSidebarMinimized ? 'block lg:hidden' : 'block'
+              }`}
+            >
               Student Navigation
             </div>
 
@@ -180,24 +209,37 @@ export function PortalShell({ children }: PortalShellProps) {
                 <Link
                   key={item.name}
                   href={item.href}
+                  title={item.name}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between rounded-xl px-3.5 py-2.5 text-xs font-medium transition-all sm:text-sm ${
+                  className={`flex items-center ${
+                    isSidebarMinimized
+                      ? 'justify-between px-3.5 lg:justify-center lg:px-2.5'
+                      : 'justify-between px-3.5'
+                  } rounded-xl py-2.5 text-xs font-medium transition-all sm:text-sm ${
                     isActive
-                      ? 'border border-emerald-500/30 bg-emerald-600/20 font-semibold text-emerald-400 shadow-inner'
-                      : 'text-slate-300 hover:bg-slate-900 hover:text-white'
+                      ? 'border border-[#13c2b6]/40 bg-[#13c2b6]/15 font-bold text-black shadow-xs'
+                      : 'text-[#666666] hover:bg-[#f6fbfe] hover:text-black'
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <Icon
-                      className={`size-4 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`}
+                      className={`size-4 shrink-0 ${isActive ? 'text-[#13c2b6]' : 'text-[#666666]'}`}
                     />
-                    <span>{item.name}</span>
+                    <span
+                      className={
+                        isSidebarMinimized ? 'inline lg:hidden' : 'inline'
+                      }
+                    >
+                      {item.name}
+                    </span>
                   </div>
 
                   {item.badge && (
                     <Badge
                       variant="outline"
-                      className="border-emerald-500/40 px-1.5 py-0 text-[10px] text-emerald-400"
+                      className={`border-[#87cbde] bg-[#87cbde]/20 px-1.5 py-0 text-[10px] font-bold text-black ${
+                        isSidebarMinimized ? 'inline lg:hidden' : 'inline'
+                      }`}
                     >
                       {item.badge}
                     </Badge>
@@ -209,29 +251,60 @@ export function PortalShell({ children }: PortalShellProps) {
         </div>
 
         {/* Bottom User Profile Summary Card */}
-        <div className="border-t border-slate-800/80 bg-slate-900/50 p-4">
-          <div className="space-y-3 rounded-xl border border-slate-800 bg-slate-900 p-3">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="flex size-10 items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-600 text-xs font-bold text-white">
+        <div className="border-t border-[#e5e5e5] bg-[#f6fbfe] p-3 lg:p-4">
+          {/* Minimized Desktop View */}
+          {isSidebarMinimized && (
+            <div className="hidden flex-col items-center gap-2 lg:flex">
+              <div
+                className="group relative cursor-pointer"
+                title={`${fullName} • ${cnic}`}
+              >
+                <div className="flex size-10 items-center justify-center rounded-[10px] bg-[#13c2b6] text-xs font-bold text-black">
                   {initials}
                 </div>
-                <div className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full bg-emerald-500 ring-2 ring-slate-900" />
+                <div className="absolute -right-0.5 -bottom-0.5 size-3 rounded-full bg-[#13c2b6] ring-2 ring-white" />
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  logout();
+                  router.push('/');
+                }}
+                className="rounded-lg p-2 text-[#666666] transition-colors hover:bg-rose-50 hover:text-rose-600"
+                title="Log out session"
+              >
+                <LogOut className="size-4" />
+              </button>
+            </div>
+          )}
+
+          {/* Full Expanded View */}
+          <div
+            className={`space-y-3 rounded-xl border border-[#e5e5e5] bg-white p-3 shadow-xs ${
+              isSidebarMinimized ? 'block lg:hidden' : 'block'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="flex size-10 items-center justify-center rounded-[10px] bg-[#13c2b6] text-xs font-bold text-black">
+                  {initials}
+                </div>
+                <div className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full bg-[#13c2b6] ring-2 ring-white" />
               </div>
 
               <div className="min-w-0 flex-1">
-                <span className="block truncate text-xs font-semibold text-white">
+                <span className="block truncate text-xs font-semibold text-black">
                   {fullName}
                 </span>
-                <span className="block truncate font-mono text-[10px] text-slate-400">
+                <span className="block truncate font-mono text-[10px] text-[#666666]">
                   {cnic}
                 </span>
               </div>
             </div>
 
-            <div className="flex items-center justify-between border-t border-slate-800/80 pt-1 text-[11px]">
-              <span className="flex items-center gap-1 font-medium text-emerald-400">
-                <ShieldCheck className="size-3" />
+            <div className="flex items-center justify-between border-t border-[#e5e5e5] pt-1 text-[11px]">
+              <span className="flex items-center gap-1 font-semibold text-[#13c2b6]">
+                <ShieldCheck className="size-3 text-[#13c2b6]" />
                 Verified
               </span>
 
@@ -241,7 +314,7 @@ export function PortalShell({ children }: PortalShellProps) {
                   logout();
                   router.push('/');
                 }}
-                className="flex items-center gap-1 text-slate-400 transition-colors hover:text-rose-400"
+                className="flex items-center gap-1 text-[#666666] transition-colors hover:text-rose-600"
                 title="Log out session"
               >
                 <LogOut className="size-3" />
@@ -255,20 +328,36 @@ export function PortalShell({ children }: PortalShellProps) {
       {/* Main Column (Top Bar + Page Content) */}
       <div className="flex min-w-0 flex-1 flex-col overflow-y-auto">
         {/* Top Bar */}
-        <header className="bg-background/95 border-border sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b px-4 backdrop-blur sm:px-6 lg:px-8">
-          {/* Left: Mobile Toggle & Welcome Greeting */}
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b border-[#e5e5e5] bg-white/95 px-4 backdrop-blur sm:px-6 lg:px-8">
+          {/* Left: Mobile Toggle, Desktop Sidebar Minimize & Welcome Greeting */}
           <div className="flex items-center gap-3 sm:gap-4">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg p-2 lg:hidden"
+              className="rounded-lg p-2 text-[#666666] hover:bg-[#f6fbfe] hover:text-black lg:hidden"
               aria-label="Open sidebar"
             >
               <Menu className="size-5" />
             </button>
 
+            <button
+              type="button"
+              onClick={() => setIsSidebarMinimized(!isSidebarMinimized)}
+              className="hidden rounded-lg p-2 text-[#666666] transition-colors hover:bg-[#f6fbfe] hover:text-black lg:inline-flex"
+              aria-label={
+                isSidebarMinimized ? 'Expand sidebar' : 'Minimize sidebar'
+              }
+              title={isSidebarMinimized ? 'Expand sidebar' : 'Minimize sidebar'}
+            >
+              {isSidebarMinimized ? (
+                <PanelLeftOpen className="size-5" />
+              ) : (
+                <PanelLeftClose className="size-5" />
+              )}
+            </button>
+
             <div>
-              <h1 className="text-foreground flex items-center gap-2 text-sm font-bold tracking-tight sm:text-base">
+              <h1 className="font-heading flex items-center gap-2 text-sm font-bold tracking-tight text-black sm:text-base">
                 <span>Welcome back, {fullName}</span>
                 <Badge
                   variant="approved"
@@ -278,7 +367,7 @@ export function PortalShell({ children }: PortalShellProps) {
                   NADRA CNIC Linked
                 </Badge>
               </h1>
-              <span className="text-muted-foreground hidden text-[11px] sm:block">
+              <span className="hidden text-[11px] text-[#666666] sm:block">
                 Session active • Statutory Forensic Attestation Desk
               </span>
             </div>
@@ -289,17 +378,17 @@ export function PortalShell({ children }: PortalShellProps) {
             {/* Notifications Trigger */}
             <DropdownMenu>
               <DropdownMenuTrigger
-                className="text-muted-foreground hover:text-foreground hover:bg-muted relative cursor-pointer rounded-lg p-2 transition-colors outline-none"
+                className="relative cursor-pointer rounded-lg p-2 text-[#666666] transition-colors outline-none hover:bg-[#f6fbfe] hover:text-black"
                 aria-label="View notifications"
               >
                 <Bell className="size-4" />
                 {pendingTasks.length > 0 && (
-                  <span className="absolute top-1.5 right-1.5 size-2 animate-pulse rounded-full bg-amber-500" />
+                  <span className="absolute top-1.5 right-1.5 size-2 animate-pulse rounded-full bg-[#27b2d7]" />
                 )}
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-80 space-y-1 p-2">
                 <div className="flex items-center justify-between px-2 py-1.5">
-                  <span className="text-foreground text-xs font-bold">
+                  <span className="font-heading text-xs font-bold text-black">
                     Active Notifications
                   </span>
                   <Badge variant="outline" className="font-mono text-[10px]">
@@ -309,7 +398,7 @@ export function PortalShell({ children }: PortalShellProps) {
                 <DropdownMenuSeparator />
 
                 {pendingTasks.length === 0 ? (
-                  <div className="text-muted-foreground p-4 text-center text-xs">
+                  <div className="p-4 text-center text-xs text-[#666666]">
                     All applications and tasks are up to date!
                   </div>
                 ) : (
@@ -323,10 +412,10 @@ export function PortalShell({ children }: PortalShellProps) {
                           );
                         }
                       }}
-                      className="flex cursor-pointer flex-col items-start gap-1 rounded-lg p-2.5 text-xs"
+                      className="flex cursor-pointer flex-col items-start gap-1 rounded-lg p-2.5 text-xs hover:bg-[#f6fbfe]"
                     >
                       <div className="flex w-full items-center justify-between">
-                        <span className="text-foreground max-w-[190px] truncate text-[11px] font-semibold">
+                        <span className="max-w-[190px] truncate text-[11px] font-semibold text-black">
                           {task.title}
                         </span>
                         <Badge
@@ -338,7 +427,7 @@ export function PortalShell({ children }: PortalShellProps) {
                           {task.priority}
                         </Badge>
                       </div>
-                      <p className="text-muted-foreground line-clamp-2 text-[11px]">
+                      <p className="line-clamp-2 text-[11px] text-[#666666]">
                         {task.description}
                       </p>
                     </DropdownMenuItem>
@@ -349,16 +438,16 @@ export function PortalShell({ children }: PortalShellProps) {
 
             {/* Demo Role Switcher Dropdown */}
             <DropdownMenu>
-              <DropdownMenuTrigger className="border-border bg-card text-foreground hover:bg-muted hidden cursor-pointer items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium transition-colors outline-none sm:inline-flex">
-                <Sparkles className="size-3.5 text-emerald-500" />
+              <DropdownMenuTrigger className="hidden cursor-pointer items-center gap-1.5 rounded-[10px] border border-[#87cbde]/60 bg-[#87cbde]/20 px-2.5 py-1.5 text-xs font-semibold text-black transition-colors outline-none hover:bg-[#87cbde]/30 sm:inline-flex">
+                <Sparkles className="size-3.5 text-[#27b2d7]" />
                 <span>
                   Demo:{' '}
                   {authStatus === 'first_time' ? 'First-Time' : 'Returning'}
                 </span>
-                <ChevronDown className="text-muted-foreground size-3" />
+                <ChevronDown className="size-3 text-[#666666]" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56 p-2 text-xs">
-                <DropdownMenuLabel className="text-muted-foreground text-[11px] font-bold uppercase">
+                <DropdownMenuLabel className="font-heading text-[11px] font-bold text-[#666666] uppercase">
                   Simulate Persona
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -370,10 +459,10 @@ export function PortalShell({ children }: PortalShellProps) {
                   className="cursor-pointer"
                 >
                   <div className="space-y-0.5">
-                    <span className="text-foreground block font-semibold">
+                    <span className="block font-semibold text-black">
                       Returning Student
                     </span>
-                    <span className="text-muted-foreground block text-[10px]">
+                    <span className="block text-[10px] text-[#666666]">
                       Hamza Tariq Malik • 4 Applications
                     </span>
                   </div>
@@ -386,10 +475,10 @@ export function PortalShell({ children }: PortalShellProps) {
                   className="cursor-pointer"
                 >
                   <div className="space-y-0.5">
-                    <span className="text-foreground block font-semibold">
+                    <span className="block font-semibold text-black">
                       First-Time Student
                     </span>
-                    <span className="text-muted-foreground block text-[10px]">
+                    <span className="block text-[10px] text-[#666666]">
                       Ayesha Siddiqua • 35% Onboarding
                     </span>
                   </div>
@@ -400,7 +489,7 @@ export function PortalShell({ children }: PortalShellProps) {
             {/* User Avatar Action Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger
-                className="flex size-8 cursor-pointer items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white ring-2 ring-emerald-500/30 outline-none"
+                className="flex size-8 cursor-pointer items-center justify-center rounded-full bg-[#13c2b6] text-xs font-bold text-black ring-2 ring-[#13c2b6]/30 outline-none"
                 aria-label="User menu"
               >
                 {initials}

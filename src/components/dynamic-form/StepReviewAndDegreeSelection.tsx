@@ -9,8 +9,6 @@ import {
   CheckCircle2,
   Clock,
   ShieldCheck,
-  Truck,
-  Building2,
   Receipt,
   FileText,
   AlertCircle,
@@ -25,7 +23,6 @@ import {
   CardDescription,
 } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
 import type {
   AttestedDegreeSelection,
   SelectedDocumentItem,
@@ -108,11 +105,6 @@ export function StepReviewAndDegreeSelection({
       attestEquivalence: false,
     },
   ]);
-
-  const [deliveryMode, setDeliveryMode] = React.useState<
-    'courier' | 'walkin_urgent'
-  >('courier');
-  const [selectedCenter, setSelectedCenter] = React.useState<string>('isb-h9');
 
   // Dynamic fee calculation
   const calculations = React.useMemo(() => {
@@ -231,7 +223,6 @@ export function StepReviewAndDegreeSelection({
       }
     }
 
-    const courierFee = deliveryMode === 'courier' ? 300 : 0;
     const subtotal =
       originalDegreeFee +
       degreeCopiesFee +
@@ -239,7 +230,7 @@ export function StepReviewAndDegreeSelection({
       transcriptCopiesFee +
       provisionalFee +
       equivalenceFee;
-    const totalAmount = subtotal + courierFee;
+    const totalAmount = subtotal;
 
     return {
       totalDocsCount,
@@ -249,20 +240,17 @@ export function StepReviewAndDegreeSelection({
       transcriptCopiesFee,
       provisionalFee,
       equivalenceFee,
-      courierFee,
       subtotal,
       totalAmount,
       selections,
     };
-  }, [degrees, deliveryMode]);
+  }, [degrees]);
 
   // Synchronize with parent wizard
   React.useEffect(() => {
     onChange('attestationSelection', calculations.selections);
     onChange('totalAmount', calculations.totalAmount);
-    onChange('deliveryMode', deliveryMode);
-    onChange('hecCenter', selectedCenter);
-  }, [calculations, deliveryMode, selectedCenter, onChange]);
+  }, [calculations, onChange]);
 
   const updateDegree = (id: string, updates: Partial<DegreeItemConfig>) => {
     setDegrees((prev) =>
@@ -448,11 +436,11 @@ export function StepReviewAndDegreeSelection({
         {/* Left 2 Columns: Degree Cards & Document Checkboxes */}
         <div className="space-y-4 lg:col-span-2">
           <div className="flex items-center justify-between">
-            <h4 className="text-foreground flex items-center gap-2 text-sm font-bold tracking-wider uppercase">
-              <ShieldCheck className="size-4 text-emerald-600" />
+            <h4 className="flex items-center gap-2 text-sm font-bold tracking-wider text-black uppercase">
+              <ShieldCheck className="size-4 text-[#13c2b6]" />
               <span>Select Degrees & Certificates for Attestation</span>
             </h4>
-            <span className="text-muted-foreground text-xs">
+            <span className="text-xs text-[#666666]">
               Statutory Fee: Original PKR 1,000 | Copy PKR 700
             </span>
           </div>
@@ -469,10 +457,10 @@ export function StepReviewAndDegreeSelection({
             return (
               <Card
                 key={deg.id}
-                className={`border transition-all ${
+                className={`rounded-2xl border transition-all ${
                   hasAnySelected
-                    ? 'bg-card border-emerald-600/40 shadow-sm ring-1 ring-emerald-500/10'
-                    : 'border-border bg-card/60'
+                    ? 'border-[#13c2b6] bg-white shadow-[0_10px_28px_rgba(8,27,88,0.06)] ring-1 ring-[#13c2b6]/20'
+                    : 'border-[#e5e5e5] bg-white'
                 }`}
               >
                 <CardHeader className="border-border/60 border-b pb-3">
@@ -554,7 +542,7 @@ export function StepReviewAndDegreeSelection({
                       </div>
 
                       <div className="flex items-center gap-3 self-end sm:self-center">
-                        <span className="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                        <span className="font-mono text-xs font-bold text-black">
                           PKR 1,000
                         </span>
                         <div className="border-border flex items-center gap-1.5 border-l pl-3">
@@ -609,7 +597,7 @@ export function StepReviewAndDegreeSelection({
                       </div>
 
                       <div className="flex items-center gap-3 self-end sm:self-center">
-                        <span className="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                        <span className="font-mono text-xs font-bold text-black">
                           PKR 1,000
                         </span>
                         <div className="border-border flex items-center gap-1.5 border-l pl-3">
@@ -690,115 +678,6 @@ export function StepReviewAndDegreeSelection({
               </Card>
             );
           })}
-
-          {/* Delivery & Dispatch Options */}
-          <Card className="border-border shadow-sm">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-foreground flex items-center gap-2 text-sm font-bold">
-                <Truck className="text-primary size-4" />
-                <span>Document Return & Delivery Channel</span>
-              </CardTitle>
-              <CardDescription className="text-muted-foreground text-xs">
-                Select whether attested documents should be returned via secure
-                courier or collected in person.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                <div
-                  className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3.5 transition-all ${
-                    deliveryMode === 'courier'
-                      ? 'border-emerald-600 bg-emerald-500/5 ring-1 ring-emerald-500/20'
-                      : 'border-border bg-card hover:bg-muted/30'
-                  }`}
-                  onClick={() => setDeliveryMode('courier')}
-                >
-                  <input
-                    type="radio"
-                    name="deliveryMode"
-                    value="courier"
-                    id="mode-courier"
-                    checked={deliveryMode === 'courier'}
-                    onChange={() => setDeliveryMode('courier')}
-                    className="mt-0.5 size-4 accent-emerald-600"
-                  />
-                  <div className="space-y-1">
-                    <Label
-                      htmlFor="mode-courier"
-                      className="block cursor-pointer text-xs font-bold"
-                    >
-                      Courier Delivery (TCS / Leopard)
-                    </Label>
-                    <p className="text-muted-foreground text-[11px] leading-relaxed">
-                      Secure insured doorstep return with real-time tracking (+
-                      PKR 300).
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3.5 transition-all ${
-                    deliveryMode === 'walkin_urgent'
-                      ? 'border-emerald-600 bg-emerald-500/5 ring-1 ring-emerald-500/20'
-                      : 'border-border bg-card hover:bg-muted/30'
-                  }`}
-                  onClick={() => setDeliveryMode('walkin_urgent')}
-                >
-                  <input
-                    type="radio"
-                    name="deliveryMode"
-                    value="walkin_urgent"
-                    id="mode-walkin"
-                    checked={deliveryMode === 'walkin_urgent'}
-                    onChange={() => setDeliveryMode('walkin_urgent')}
-                    className="mt-0.5 size-4 accent-emerald-600"
-                  />
-                  <div className="space-y-1">
-                    <Label
-                      htmlFor="mode-walkin"
-                      className="block cursor-pointer text-xs font-bold"
-                    >
-                      Urgent Walk-in Counter Collection
-                    </Label>
-                    <p className="text-muted-foreground text-[11px] leading-relaxed">
-                      Collect directly from your designated HEC Regional Centre
-                      counter (PKR 0).
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {deliveryMode === 'walkin_urgent' && (
-                <div className="border-border bg-muted/30 space-y-2 rounded-xl border p-3">
-                  <Label className="text-foreground flex items-center gap-1.5 text-xs font-semibold">
-                    <Building2 className="text-primary size-3.5" />
-                    <span>Select HEC Regional Center for Collection</span>
-                  </Label>
-                  <select
-                    value={selectedCenter}
-                    onChange={(e) => setSelectedCenter(e.target.value)}
-                    className="border-border bg-background h-9 w-full rounded-lg border px-3 text-xs"
-                  >
-                    <option value="isb-h9">
-                      HEC Secretariat, Sector H-9, Islamabad
-                    </option>
-                    <option value="lhr-gulberg">
-                      HEC Regional Centre, Lahore (55-B/2, Gulberg III)
-                    </option>
-                    <option value="khi-ku">
-                      HEC Regional Centre, Karachi (Karachi University Campus)
-                    </option>
-                    <option value="pesh-hayatabad">
-                      HEC Regional Centre, Peshawar (Phase-V, Hayatabad)
-                    </option>
-                    <option value="qta-chaman">
-                      HEC Regional Centre, Quetta (Chaman Housing Scheme)
-                    </option>
-                  </select>
-                </div>
-              )}
-            </CardContent>
-          </Card>
         </div>
 
         {/* Right 1 Column: Sticky E-Challan Summary Card */}
@@ -837,7 +716,7 @@ export function StepReviewAndDegreeSelection({
                 {calculations.originalDegreeFee > 0 && (
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground flex items-center gap-1.5">
-                      <FileText className="size-3 text-emerald-500" />
+                      <FileText className="size-3 text-[#13c2b6]" />
                       Original Degree(s):
                     </span>
                     <span className="text-foreground font-mono">
@@ -860,7 +739,7 @@ export function StepReviewAndDegreeSelection({
                 {calculations.originalTranscriptFee > 0 && (
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground flex items-center gap-1.5">
-                      <FileText className="size-3 text-emerald-500" />
+                      <FileText className="size-3 text-[#13c2b6]" />
                       Original Transcript(s):
                     </span>
                     <span className="text-foreground font-mono">
@@ -901,37 +780,26 @@ export function StepReviewAndDegreeSelection({
                     </span>
                   </div>
                 )}
-
-                <div className="flex items-center justify-between pt-1">
-                  <span className="text-muted-foreground">
-                    Courier Handling:
-                  </span>
-                  <span className="text-foreground font-mono">
-                    {calculations.courierFee > 0
-                      ? `PKR ${calculations.courierFee.toLocaleString()}`
-                      : 'Free (Counter Pickup)'}
-                  </span>
-                </div>
               </div>
 
               {/* Total Amount Box */}
-              <div className="space-y-1 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3">
-                <span className="block text-[10px] font-bold tracking-wider text-emerald-800 uppercase dark:text-emerald-300">
+              <div className="space-y-1 rounded-2xl border border-[#13c2b6]/30 bg-[#f6fbfe] p-4 shadow-sm">
+                <span className="block text-[10px] font-bold tracking-wider text-[#27b2d7] uppercase">
                   Total Payable Amount
                 </span>
                 <div className="flex items-baseline justify-between">
-                  <span className="font-mono text-xl font-black text-emerald-700 sm:text-2xl dark:text-emerald-400">
+                  <span className="font-heading text-xl font-extrabold text-black sm:text-2xl">
                     PKR {calculations.totalAmount.toLocaleString()}
                   </span>
-                  <span className="text-muted-foreground font-mono text-[10px]">
+                  <span className="font-mono text-[10px] text-[#666666]">
                     1-Link PSID
                   </span>
                 </div>
               </div>
 
               {/* Statutory Note */}
-              <div className="bg-muted/40 text-muted-foreground flex items-start gap-2 rounded-lg p-2.5 text-[11px]">
-                <AlertCircle className="text-primary mt-0.5 size-3.5 shrink-0" />
+              <div className="flex items-start gap-2 rounded-xl border border-[#e5e5e5] bg-[#f6fbfe] p-3 text-[11px] text-[#666666]">
+                <AlertCircle className="mt-0.5 size-3.5 shrink-0 text-[#13c2b6]" />
                 <p>
                   Proceeding to Step 4 will issue a formal 1-Link PSID e-Challan
                   valid for 7 calendar days across all Pakistani banks.

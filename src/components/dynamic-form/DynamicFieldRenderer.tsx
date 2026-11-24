@@ -131,7 +131,7 @@ export function DynamicFieldRenderer({
                   value={opt.value}
                   checked={value === opt.value}
                   onChange={(e) => onChange(e.target.value)}
-                  className="size-4 accent-emerald-600"
+                  className="size-4 accent-[#13c2b6]"
                 />
                 <span>{opt.label}</span>
               </label>

@@ -64,8 +64,8 @@ export default function ProfilePage() {
       <div className="mx-auto max-w-5xl space-y-8">
         {/* Save confirmation */}
         {saveSuccess && (
-          <div className="flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs text-emerald-600 dark:text-emerald-400">
-            <CheckCircle2 className="size-4 shrink-0" />
+          <div className="flex items-center gap-2 rounded-xl border border-[#13c2b6]/30 bg-[#f6fbfe] p-3 text-xs text-black">
+            <CheckCircle2 className="size-4 shrink-0 text-[#13c2b6]" />
             <span>
               Student profile and contact records updated successfully in HEC
               National Register!
@@ -74,27 +74,27 @@ export default function ProfilePage() {
         )}
 
         {/* Profile Header Card */}
-        <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-6 text-white shadow-xl sm:p-8">
-          <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl" />
+        <div className="relative overflow-hidden rounded-2xl border border-[#e5e5e5] bg-white p-6 text-black shadow-[0_10px_28px_rgba(8,27,88,0.06)] sm:p-8">
+          <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-[#87cbde]/15 blur-3xl" />
 
           <div className="relative z-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
             <div className="flex items-center gap-4 sm:gap-6">
               <div className="relative">
-                <div className="flex size-16 items-center justify-center rounded-2xl border border-emerald-400/30 bg-gradient-to-br from-emerald-600 to-teal-800 text-2xl font-bold text-white shadow-lg sm:size-20">
+                <div className="flex size-16 items-center justify-center rounded-2xl border-2 border-[#87cbde]/40 bg-gradient-to-br from-[#13c2b6] to-[#27b2d7] text-2xl font-bold text-black shadow-sm sm:size-20">
                   {fullName
                     .split(' ')
                     .map((n) => n[0])
                     .slice(0, 2)
                     .join('')}
                 </div>
-                <div className="absolute -right-1 -bottom-1 flex size-6 items-center justify-center rounded-full bg-emerald-500 text-white ring-2 ring-slate-900">
+                <div className="absolute -right-1 -bottom-1 flex size-6 items-center justify-center rounded-full bg-[#13c2b6] text-black ring-2 ring-white">
                   <CheckCircle2 className="size-4" />
                 </div>
               </div>
 
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                  <h1 className="font-heading text-2xl font-extrabold tracking-tight text-black sm:text-3xl">
                     {fullName}
                   </h1>
                   <Badge variant="approved" className="gap-1 text-[10px]">
@@ -102,27 +102,27 @@ export default function ProfilePage() {
                     NADRA Linked
                   </Badge>
                 </div>
-                <p className="font-mono text-xs text-slate-300 sm:text-sm">
+                <p className="font-mono text-xs text-[#666666] sm:text-sm">
                   HEC-ID: {student?.id?.toUpperCase() || 'STD-98214'} • CNIC:{' '}
                   {cnic}
                 </p>
               </div>
             </div>
 
-            <div className="shrink-0 space-y-2 rounded-xl border border-slate-800 bg-slate-950/80 p-4 sm:w-64">
+            <div className="shrink-0 space-y-2 rounded-2xl border border-[#e5e5e5] bg-[#f6fbfe] p-4 sm:w-64">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-slate-400">Profile Completeness</span>
-                <span className="font-bold text-emerald-400">
+                <span className="text-[#666666]">Profile Completeness</span>
+                <span className="font-extrabold text-[#13c2b6]">
                   {completionPercentage}%
                 </span>
               </div>
-              <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+              <div className="h-2 w-full overflow-hidden rounded-full border border-[#e5e5e5] bg-white">
                 <div
-                  className="h-2 rounded-full bg-emerald-500"
+                  className="h-2 rounded-full bg-[#13c2b6]"
                   style={{ width: `${completionPercentage}%` }}
                 />
               </div>
-              <span className="block pt-0.5 text-[10px] text-slate-400">
+              <span className="block pt-0.5 text-[10px] text-[#666666]">
                 Ready for Foreign Attestation & Equivalence
               </span>
             </div>
@@ -292,7 +292,7 @@ export default function ProfilePage() {
             <CardFooter className="border-border flex justify-end border-t pt-4">
               <Button
                 type="submit"
-                className="gap-1.5 bg-emerald-600 text-xs font-semibold text-white hover:bg-emerald-500"
+                className="gap-1.5 bg-[#13c2b6] text-xs font-bold text-black hover:bg-[#27b2d7]"
               >
                 <Save className="size-3.5" />
                 <span>Save Profile Changes</span>

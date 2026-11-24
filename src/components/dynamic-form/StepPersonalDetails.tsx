@@ -83,9 +83,9 @@ export function StepPersonalDetails({
     <div className="space-y-6">
       {/* OCR Auto-fill Notification Banner */}
       {ocrBanner && (
-        <div className="animate-fade-in flex items-center justify-between gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs text-emerald-600 dark:text-emerald-400">
+        <div className="animate-fade-in flex items-center justify-between gap-3 rounded-2xl border border-[#13c2b6]/30 bg-[#f6fbfe] p-3 text-xs text-black">
           <div className="flex items-center gap-2">
-            <Sparkles className="size-4 shrink-0 text-emerald-500" />
+            <Sparkles className="size-4 shrink-0 text-[#13c2b6]" />
             <span>{ocrBanner}</span>
           </div>
           <Badge variant="approved" className="text-[9px]">
@@ -95,28 +95,31 @@ export function StepPersonalDetails({
       )}
 
       {/* Profile Photo & Identity Header */}
-      <Card className="border-border shadow-sm">
-        <CardHeader className="pb-3">
+      <Card className="rounded-2xl border-[#e5e5e5] bg-white shadow-[0_10px_28px_rgba(8,27,88,0.06)]">
+        <CardHeader className="p-6 pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-foreground flex items-center gap-2 text-base font-bold">
-              <User className="text-primary size-4" />
+            <CardTitle className="flex items-center gap-2 text-base font-bold text-black">
+              <User className="size-4 text-[#13c2b6]" />
               <span>Applicant Identity & Portrait</span>
             </CardTitle>
-            <Badge variant="outline" className="text-[10px]">
+            <Badge
+              variant="outline"
+              className="border-[#e5e5e5] text-[10px] text-[#666666]"
+            >
               Step 1 of 5
             </Badge>
           </div>
-          <CardDescription className="text-muted-foreground text-xs">
+          <CardDescription className="text-xs text-[#666666]">
             Passport-size color photograph with plain white or light blue
             background.
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 p-6 pt-0">
           {/* Profile Photo Uploader with Edit Badge */}
-          <div className="bg-muted/40 border-border flex flex-col gap-4 rounded-xl border p-4 sm:flex-row sm:items-center sm:gap-6">
+          <div className="flex flex-col gap-4 rounded-2xl border border-[#e5e5e5] bg-[#f6fbfe] p-4 sm:flex-row sm:items-center sm:gap-6">
             <div className="relative shrink-0">
-              <div className="flex size-20 items-center justify-center overflow-hidden rounded-2xl border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-600 to-teal-800 text-2xl font-bold text-white shadow-md">
+              <div className="flex size-20 items-center justify-center overflow-hidden rounded-2xl border-2 border-[#87cbde]/40 bg-gradient-to-br from-[#13c2b6] to-[#27b2d7] text-2xl font-bold text-black shadow-sm">
                 {profilePhoto ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -138,7 +141,7 @@ export function StepPersonalDetails({
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="ring-background absolute -right-1 -bottom-1 flex size-7 cursor-pointer items-center justify-center rounded-full bg-emerald-600 text-white shadow ring-2 transition-colors hover:bg-emerald-500"
+                className="absolute -right-1 -bottom-1 flex size-7 cursor-pointer items-center justify-center rounded-full bg-[#13c2b6] text-black shadow ring-2 ring-white transition-colors hover:bg-[#27b2d7]"
                 title="Upload or change photo"
               >
                 <Camera className="size-3.5" />
@@ -154,10 +157,10 @@ export function StepPersonalDetails({
             </div>
 
             <div className="space-y-1 text-xs">
-              <span className="text-foreground block font-semibold">
+              <span className="block font-semibold text-black">
                 Official Applicant Photograph
               </span>
-              <p className="text-muted-foreground text-[11px] leading-relaxed">
+              <p className="text-[11px] leading-relaxed text-[#666666]">
                 Format: JPG or PNG under 2 MB. Frontal face view without dark
                 sunglasses.
               </p>
@@ -284,7 +287,7 @@ export function StepPersonalDetails({
                       value={g}
                       checked={formValues.gender === g}
                       onChange={(e) => onChange('gender', e.target.value)}
-                      className="size-4 accent-emerald-600"
+                      className="size-4 accent-[#13c2b6]"
                     />
                     <span className="capitalize">{g}</span>
                   </label>
@@ -320,7 +323,7 @@ export function StepPersonalDetails({
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="text-foreground flex items-center gap-2 text-base font-bold">
-              <ShieldCheck className="size-4 text-emerald-500" />
+              <ShieldCheck className="size-4 text-[#13c2b6]" />
               <span>Inline Identity Documents & Scans</span>
             </CardTitle>
             <Badge variant="approved" className="gap-1 text-[10px]">

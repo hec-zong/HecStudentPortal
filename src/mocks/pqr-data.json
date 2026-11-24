@@ -1,0 +1,324 @@
+{
+  "degreeLevels": [
+    {
+      "id": "dl-10",
+      "level": 10,
+      "title": "Secondary School Certificate (Matric / O-Level)",
+      "category": "SSC",
+      "standardDurationYears": 10
+    },
+    {
+      "id": "dl-12",
+      "level": 12,
+      "title": "Higher Secondary School Certificate (Intermediate / A-Level)",
+      "category": "HSSC",
+      "standardDurationYears": 2
+    },
+    {
+      "id": "dl-14",
+      "level": 14,
+      "title": "Bachelor Degree (2-Year Pass / Associate Degree)",
+      "category": "Undergraduate",
+      "standardDurationYears": 2
+    },
+    {
+      "id": "dl-16",
+      "level": 16,
+      "title": "Bachelor Degree (4-Year BS / BSc Hons / BE)",
+      "category": "Graduate",
+      "standardDurationYears": 4
+    },
+    {
+      "id": "dl-18",
+      "level": 18,
+      "title": "Master Degree (MS / MPhil / 2-Year Post-16)",
+      "category": "Postgraduate",
+      "standardDurationYears": 2
+    },
+    {
+      "id": "dl-21",
+      "level": 21,
+      "title": "Doctor of Philosophy (PhD)",
+      "category": "Doctoral",
+      "standardDurationYears": 3
+    }
+  ],
+  "universities": [
+    {
+      "id": "uni-pu-01",
+      "code": "PU-LHR",
+      "name": "University of the Punjab",
+      "shortName": "PU",
+      "sector": "public",
+      "province": "Punjab",
+      "city": "Lahore",
+      "charterYear": 1882,
+      "isAccredited": true,
+      "mainCampus": "Quaid-e-Azam Campus, Canal Road, Lahore",
+      "campuses": ["Allama Iqbal Campus", "Gujranwala Campus", "Jhelum Campus"]
+    },
+    {
+      "id": "uni-nust-02",
+      "code": "NUST-ISB",
+      "name": "National University of Sciences and Technology",
+      "shortName": "NUST",
+      "sector": "public",
+      "province": "Federal",
+      "city": "Islamabad",
+      "charterYear": 1991,
+      "isAccredited": true,
+      "mainCampus": "H-12 Sector, Islamabad",
+      "campuses": [
+        "Rawalpindi Campus (MCS & CEME)",
+        "Karachi Campus (PNEC)",
+        "Risalpur Campus (CAE)"
+      ]
+    },
+    {
+      "id": "uni-lums-03",
+      "code": "LUMS-LHR",
+      "name": "Lahore University of Management Sciences",
+      "shortName": "LUMS",
+      "sector": "private",
+      "province": "Punjab",
+      "city": "Lahore",
+      "charterYear": 1985,
+      "isAccredited": true,
+      "mainCampus": "DHA Phase 5, Khayaban-e-Jinnah, Cantt, Lahore",
+      "campuses": ["Main Campus"]
+    },
+    {
+      "id": "uni-qau-04",
+      "code": "QAU-ISB",
+      "name": "Quaid-i-Azam University",
+      "shortName": "QAU",
+      "sector": "public",
+      "province": "Federal",
+      "city": "Islamabad",
+      "charterYear": 1967,
+      "isAccredited": true,
+      "mainCampus": "University Road, Islamabad",
+      "campuses": ["Main Campus"]
+    },
+    {
+      "id": "uni-aku-05",
+      "code": "AKU-KHI",
+      "name": "The Aga Khan University",
+      "shortName": "AKU",
+      "sector": "private",
+      "province": "Sindh",
+      "city": "Karachi",
+      "charterYear": 1983,
+      "isAccredited": true,
+      "mainCampus": "Stadium Road, Karachi",
+      "campuses": ["Main Campus"]
+    },
+    {
+      "id": "uni-uet-06",
+      "code": "UET-LHR",
+      "name": "University of Engineering and Technology",
+      "shortName": "UET Lahore",
+      "sector": "public",
+      "province": "Punjab",
+      "city": "Lahore",
+      "charterYear": 1921,
+      "isAccredited": true,
+      "mainCampus": "Grand Trunk Road, Lahore",
+      "campuses": ["Kala Shah Kaku", "Faisalabad", "Rachna", "Narowal"]
+    },
+    {
+      "id": "uni-cui-07",
+      "code": "CUI-ISB",
+      "name": "COMSATS University Islamabad",
+      "shortName": "CUI",
+      "sector": "public",
+      "province": "Federal",
+      "city": "Islamabad",
+      "charterYear": 2000,
+      "isAccredited": true,
+      "mainCampus": "Park Road, Tarlai Kalan, Islamabad",
+      "campuses": ["Lahore", "Abbottabad", "Wah", "Attock", "Sahiwal", "Vehari"]
+    },
+    {
+      "id": "uni-iba-08",
+      "code": "IBA-KHI",
+      "name": "Institute of Business Administration",
+      "shortName": "IBA Karachi",
+      "sector": "public",
+      "province": "Sindh",
+      "city": "Karachi",
+      "charterYear": 1955,
+      "isAccredited": true,
+      "mainCampus": "University Road, University of Karachi Campus",
+      "campuses": ["City Campus, Garden Road"]
+    }
+  ],
+  "programs": [
+    {
+      "id": "prog-nust-01",
+      "universityId": "uni-nust-02",
+      "degreeLevelId": "dl-16",
+      "programName": "Bachelor of Science in Computer Science (BS CS)",
+      "discipline": "Computer Science & Information Technology",
+      "department": "School of Electrical Engineering and Computer Science (SEECS)",
+      "programDurationYears": 4,
+      "accreditationCouncil": "NCEAC",
+      "status": "accredited",
+      "approvedIntakeYears": { "from": 2008 }
+    },
+    {
+      "id": "prog-nust-02",
+      "universityId": "uni-nust-02",
+      "degreeLevelId": "dl-16",
+      "programName": "Bachelor of Engineering in Electrical Engineering (BE EE)",
+      "discipline": "Engineering & Technology",
+      "department": "SEECS",
+      "programDurationYears": 4,
+      "accreditationCouncil": "PEC",
+      "status": "accredited",
+      "approvedIntakeYears": { "from": 1999 }
+    },
+    {
+      "id": "prog-nust-03",
+      "universityId": "uni-nust-02",
+      "degreeLevelId": "dl-18",
+      "programName": "Master of Science in Artificial Intelligence (MS AI)",
+      "discipline": "Artificial Intelligence",
+      "department": "SEECS",
+      "programDurationYears": 2,
+      "accreditationCouncil": "HEC-QAA",
+      "status": "accredited",
+      "approvedIntakeYears": { "from": 2020 }
+    },
+    {
+      "id": "prog-pu-01",
+      "universityId": "uni-pu-01",
+      "degreeLevelId": "dl-16",
+      "programName": "Bachelor of Science in Software Engineering (BS SE)",
+      "discipline": "Software Engineering",
+      "department": "Punjab University College of Information Technology (PUCIT)",
+      "programDurationYears": 4,
+      "accreditationCouncil": "NCEAC",
+      "status": "accredited",
+      "approvedIntakeYears": { "from": 2000 }
+    },
+    {
+      "id": "prog-pu-02",
+      "universityId": "uni-pu-01",
+      "degreeLevelId": "dl-18",
+      "programName": "Master of Philosophy in Computer Science (MPhil CS)",
+      "discipline": "Computer Science",
+      "department": "PUCIT",
+      "programDurationYears": 2,
+      "accreditationCouncil": "HEC-QAA",
+      "status": "accredited",
+      "approvedIntakeYears": { "from": 2006 }
+    },
+    {
+      "id": "prog-lums-01",
+      "universityId": "uni-lums-03",
+      "degreeLevelId": "dl-16",
+      "programName": "Bachelor of Science in Computer Science (BS CS)",
+      "discipline": "Computer Science",
+      "department": "Syed Babar Ali School of Science and Engineering (SBASSE)",
+      "programDurationYears": 4,
+      "accreditationCouncil": "NCEAC",
+      "status": "accredited",
+      "approvedIntakeYears": { "from": 1994 }
+    },
+    {
+      "id": "prog-lums-02",
+      "universityId": "uni-lums-03",
+      "degreeLevelId": "dl-16",
+      "programName": "Bachelor of Science in Accounting and Finance (BS ACF)",
+      "discipline": "Business Administration",
+      "department": "Suleman Dawood School of Business (SDSB)",
+      "programDurationYears": 4,
+      "accreditationCouncil": "NBEAC",
+      "status": "accredited",
+      "approvedIntakeYears": { "from": 2007 }
+    },
+    {
+      "id": "prog-qau-01",
+      "universityId": "uni-qau-04",
+      "degreeLevelId": "dl-18",
+      "programName": "Master of Philosophy in Economics (MPhil Econ)",
+      "discipline": "Social Sciences",
+      "department": "Department of Economics",
+      "programDurationYears": 2,
+      "accreditationCouncil": "HEC-QAA",
+      "status": "accredited",
+      "approvedIntakeYears": { "from": 1974 }
+    },
+    {
+      "id": "prog-uet-01",
+      "universityId": "uni-uet-06",
+      "degreeLevelId": "dl-16",
+      "programName": "Bachelor of Science in Civil Engineering (BSc Civil)",
+      "discipline": "Engineering & Technology",
+      "department": "Department of Civil Engineering",
+      "programDurationYears": 4,
+      "accreditationCouncil": "PEC",
+      "status": "accredited",
+      "approvedIntakeYears": { "from": 1939 }
+    }
+  ],
+  "boards": [
+    {
+      "id": "board-fbise-01",
+      "code": "FBISE-ISB",
+      "name": "Federal Board of Intermediate and Secondary Education",
+      "province": "Federal",
+      "type": "BISE"
+    },
+    {
+      "id": "board-bise-lhr-02",
+      "code": "BISE-LHR",
+      "name": "Board of Intermediate and Secondary Education, Lahore",
+      "province": "Punjab",
+      "type": "BISE"
+    },
+    {
+      "id": "board-bise-rwp-03",
+      "code": "BISE-RWP",
+      "name": "Board of Intermediate and Secondary Education, Rawalpindi",
+      "province": "Punjab",
+      "type": "BISE"
+    },
+    {
+      "id": "board-bise-khi-04",
+      "code": "BIEK-KHI",
+      "name": "Board of Intermediate Education, Karachi",
+      "province": "Sindh",
+      "type": "BISE"
+    },
+    {
+      "id": "board-bise-pesh-05",
+      "code": "BISE-PESH",
+      "name": "Board of Intermediate and Secondary Education, Peshawar",
+      "province": "Khyber Pakhtunkhwa",
+      "type": "BISE"
+    },
+    {
+      "id": "board-bise-qta-06",
+      "code": "BISE-QTA",
+      "name": "Board of Intermediate and Secondary Education, Quetta",
+      "province": "Balochistan",
+      "type": "BISE"
+    },
+    {
+      "id": "board-pbte-07",
+      "code": "PBTE-LHR",
+      "name": "Punjab Board of Technical Education",
+      "province": "Punjab",
+      "type": "Technical"
+    },
+    {
+      "id": "board-ibcc-08",
+      "code": "IBCC-ISB",
+      "name": "Inter Board Coordination Commission (IBCC Equivalence)",
+      "province": "Federal",
+      "type": "Cambridge/IBCC"
+    }
+  ]
+}

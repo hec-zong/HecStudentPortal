@@ -1,0 +1,472 @@
+{
+  "serviceId": "hec-degree-attestation-v2",
+  "title": "HEC Degree & Transcript Attestation Service",
+  "description": "Official Higher Education Commission verified attestation workflow connecting Synapark verification engine with the Pakistan Qualification Register (PQR).",
+  "version": "2.4.0",
+  "steps": [
+    {
+      "id": "step-personal-info",
+      "stepNumber": 1,
+      "title": "Personal Details & Identity",
+      "shortTitle": "Personal Info",
+      "description": "Verify your identity credentials, contact details, and special requirement dropzones.",
+      "sections": [
+        {
+          "id": "sec-identity",
+          "title": "National Identity & Biometrics",
+          "description": "Upload high-resolution scans of your valid CNIC / NICOP or Passport.",
+          "fields": [
+            {
+              "id": "f-cnic",
+              "name": "cnic",
+              "label": "CNIC / NICOP Number",
+              "type": "text",
+              "placeholder": "35202-1234567-1",
+              "helpText": "Enter 13-digit Pakistani CNIC with dashes",
+              "validation": {
+                "required": true,
+                "pattern": "^[0-9]{5}-[0-9]{7}-[0-9]{1}$",
+                "customMessage": "CNIC must follow the pattern 12345-1234567-1"
+              }
+            },
+            {
+              "id": "f-fullname",
+              "name": "fullName",
+              "label": "Full Name (as per Matric / CNIC)",
+              "type": "text",
+              "placeholder": "Muhammad Ali Khan",
+              "validation": {
+                "required": true,
+                "min": 3,
+                "max": 100
+              }
+            },
+            {
+              "id": "f-fathername",
+              "name": "fatherOrHusbandName",
+              "label": "Father's / Husband's Name",
+              "type": "text",
+              "placeholder": "Tariq Mahmood Khan",
+              "validation": {
+                "required": true,
+                "min": 3,
+                "max": 100
+              }
+            },
+            {
+              "id": "f-dob",
+              "name": "dateOfBirth",
+              "label": "Date of Birth",
+              "type": "date",
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-gender",
+              "name": "gender",
+              "label": "Gender",
+              "type": "radio",
+              "options": [
+                { "label": "Male", "value": "male" },
+                { "label": "Female", "value": "female" },
+                { "label": "Other", "value": "other" }
+              ],
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-cnic-front",
+              "name": "cnicFrontUrl",
+              "label": "CNIC Front Scan",
+              "type": "file",
+              "helpText": "Color scan or photograph of front side (Max 5MB, PDF/JPG/PNG)",
+              "dropzoneConfig": {
+                "accept": [".pdf", ".jpg", ".jpeg", ".png"],
+                "maxSizeMb": 5,
+                "multiple": false,
+                "instruction": "Drag & drop CNIC Front side or click to browse"
+              },
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-cnic-back",
+              "name": "cnicBackUrl",
+              "label": "CNIC Back Scan",
+              "type": "file",
+              "helpText": "Color scan or photograph of back side (Max 5MB, PDF/JPG/PNG)",
+              "dropzoneConfig": {
+                "accept": [".pdf", ".jpg", ".jpeg", ".png"],
+                "maxSizeMb": 5,
+                "multiple": false,
+                "instruction": "Drag & drop CNIC Back side or click to browse"
+              },
+              "validation": {
+                "required": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "sec-special-needs",
+          "title": "Special Requirements & Priority Facilitation",
+          "description": "HEC provides prioritized desk routing for students with disabilities or special requirements.",
+          "fields": [
+            {
+              "id": "f-special-needs-toggle",
+              "name": "hasSpecialNeeds",
+              "label": "Do you require special facilitation / disability accommodation?",
+              "type": "checkbox",
+              "defaultValue": false
+            },
+            {
+              "id": "f-special-details",
+              "name": "specialNeedDetails",
+              "label": "Specify Nature of Disability / Special Requirement",
+              "type": "textarea",
+              "placeholder": "Provide details of accommodation needed (e.g. Visual impairment, physical mobility, etc.)",
+              "conditional": {
+                "field": "hasSpecialNeeds",
+                "operator": "equals",
+                "value": true
+              },
+              "validation": {
+                "required": true,
+                "min": 10,
+                "max": 500
+              }
+            },
+            {
+              "id": "f-special-doc",
+              "name": "specialNeedDocumentUrl",
+              "label": "Upload Disability Certificate / Supporting Document",
+              "type": "file",
+              "conditional": {
+                "field": "hasSpecialNeeds",
+                "operator": "equals",
+                "value": true
+              },
+              "dropzoneConfig": {
+                "accept": [".pdf", ".jpg", ".png"],
+                "maxSizeMb": 5,
+                "instruction": "Upload official Social Welfare / Hospital disability certificate"
+              },
+              "validation": {
+                "required": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-academic-history",
+      "stepNumber": 2,
+      "title": "Academic History & Documents",
+      "shortTitle": "Academic Records",
+      "description": "Enter your educational lineage chronologically from SSC/Matric through your terminal degree, attaching document scans for each card.",
+      "sections": [
+        {
+          "id": "sec-academic-cards",
+          "title": "Educational Qualifications",
+          "description": "Add each qualification. HEC attestation requires prior educational credentials for verification.",
+          "repeatable": true,
+          "repeatableTitle": "Qualification Entry",
+          "minItems": 1,
+          "maxItems": 6,
+          "fields": [
+            {
+              "id": "f-acad-degree-level",
+              "name": "degreeLevelId",
+              "label": "Degree / Certificate Level",
+              "type": "select",
+              "options": [
+                {
+                  "label": "Secondary School Certificate (Matric / SSC)",
+                  "value": "dl-10"
+                },
+                {
+                  "label": "Higher Secondary School Certificate (Inter / HSSC)",
+                  "value": "dl-12"
+                },
+                {
+                  "label": "Bachelor Degree (2-Year Pass / Associate Degree)",
+                  "value": "dl-14"
+                },
+                {
+                  "label": "Bachelor Degree (4-Year BS / BSc Hons)",
+                  "value": "dl-16"
+                },
+                {
+                  "label": "Master Degree (MS / MPhil / Post-16)",
+                  "value": "dl-18"
+                },
+                { "label": "Doctor of Philosophy (PhD)", "value": "dl-21" }
+              ],
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-acad-program-title",
+              "name": "programTitle",
+              "label": "Degree / Program Title",
+              "type": "text",
+              "placeholder": "e.g. Bachelor of Science in Computer Science",
+              "validation": {
+                "required": true,
+                "min": 2
+              }
+            },
+            {
+              "id": "f-acad-inst-name",
+              "name": "institutionName",
+              "label": "University / Awarding Institution / Board",
+              "type": "text",
+              "placeholder": "e.g. National University of Sciences and Technology (NUST)",
+              "validation": {
+                "required": true,
+                "min": 3
+              }
+            },
+            {
+              "id": "f-acad-roll-no",
+              "name": "rollNumber",
+              "label": "Roll / Seat Number",
+              "type": "text",
+              "placeholder": "e.g. 19-SEECS-BSCS-044",
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-acad-reg-no",
+              "name": "registrationNumber",
+              "label": "University / Board Registration Number",
+              "type": "text",
+              "placeholder": "e.g. 2019-NUST-REG-9812",
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-acad-passing-year",
+              "name": "passingYear",
+              "label": "Year of Completion / Passing",
+              "type": "number",
+              "placeholder": "2023",
+              "validation": {
+                "required": true,
+                "min": 1960,
+                "max": 2026
+              }
+            },
+            {
+              "id": "f-acad-doc-degree",
+              "name": "documentDegreeUrl",
+              "label": "Degree / Certificate Scanned Copy",
+              "type": "file",
+              "helpText": "Front & back high quality scan of the original degree or certificate",
+              "dropzoneConfig": {
+                "accept": [".pdf", ".jpg", ".jpeg", ".png"],
+                "maxSizeMb": 10,
+                "instruction": "Upload original degree / certificate document"
+              },
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-acad-doc-transcript",
+              "name": "documentTranscriptUrl",
+              "label": "Official Detailed Marks Certificate (DMC) / Transcript",
+              "type": "file",
+              "helpText": "Complete transcript showing all semesters and CGPA / marks",
+              "dropzoneConfig": {
+                "accept": [".pdf", ".jpg", ".jpeg", ".png"],
+                "maxSizeMb": 10,
+                "instruction": "Upload official transcript / DMC"
+              },
+              "validation": {
+                "required": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-attestation-selection",
+      "stepNumber": 3,
+      "title": "Degree Attestation Selection & Fee Calculation",
+      "shortTitle": "Document Selection",
+      "description": "Select the exact documents (Original Degree, Transcript, Provisional, Equivalence) and number of photocopies you wish to attest.",
+      "sections": [
+        {
+          "id": "sec-attestation-mode",
+          "title": "Attestation Channel",
+          "description": "Choose whether you will submit via Urgent Walk-in or Authorized Courier (TCS / Leopard / OCS).",
+          "fields": [
+            {
+              "id": "f-attest-mode",
+              "name": "attestationChannel",
+              "label": "Submission Mode",
+              "type": "radio",
+              "options": [
+                {
+                  "label": "Courier Service (Leopard / TCS Desk Pickup & Return)",
+                  "value": "courier",
+                  "hint": "Safe delivery to and from your home within 5-7 working days"
+                },
+                {
+                  "label": "Walk-In Urgent Counter (HEC Regional Centre Islamabad / Lahore / Karachi)",
+                  "value": "walkin_urgent",
+                  "hint": "Same-day counter processing with appointment slip"
+                }
+              ],
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-center-choice",
+              "name": "hecCenter",
+              "label": "HEC Regional Center",
+              "type": "select",
+              "options": [
+                {
+                  "label": "HEC Secretariat, Sector H-9, Islamabad",
+                  "value": "isb-h9"
+                },
+                {
+                  "label": "HEC Regional Centre, Lahore (55-B/2, Gulberg III)",
+                  "value": "lhr-gulberg"
+                },
+                {
+                  "label": "HEC Regional Centre, Karachi (Karachi University Campus)",
+                  "value": "khi-ku"
+                },
+                {
+                  "label": "HEC Regional Centre, Peshawar (Phase-V, Hayatabad)",
+                  "value": "pesh-hayatabad"
+                },
+                {
+                  "label": "HEC Regional Centre, Quetta (Chaman Housing Scheme)",
+                  "value": "qta-chaman"
+                }
+              ],
+              "validation": {
+                "required": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-echallan",
+      "stepNumber": 4,
+      "title": "E-Challan Generation & PSID",
+      "shortTitle": "E-Challan",
+      "description": "Review generated 1-Link 17-digit PSID and Kuickpay fee voucher. Pay via Mobile App, ATM, or Bank Counter.",
+      "sections": [
+        {
+          "id": "sec-challan-info",
+          "title": "1-Link PSID & Payment Instructions",
+          "fields": [
+            {
+              "id": "f-psid-display",
+              "name": "psid",
+              "label": "1-Link Consumer Number (PSID)",
+              "type": "text",
+              "placeholder": "10009823481239102",
+              "helpText": "Use this 17-digit number on 1-Link Bill Payment in any banking app (EasyPaisa, JazzCash, Nayapay, HBL, Meezan)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-paid-submission",
+      "stepNumber": 5,
+      "title": "Paid Challan Submission & Final Review",
+      "shortTitle": "Payment Proof",
+      "description": "Upload proof of payment and submit your application to the Synapark Scrutiny workflow.",
+      "sections": [
+        {
+          "id": "sec-payment-proof",
+          "title": "Payment Verification Upload",
+          "fields": [
+            {
+              "id": "f-payment-mode",
+              "name": "paymentMode",
+              "label": "Payment Method Used",
+              "type": "select",
+              "options": [
+                {
+                  "label": "1-Link Mobile Banking / ATM Transfer",
+                  "value": "1link_atm_mobile"
+                },
+                { "label": "Kuickpay Online Portal", "value": "kuickpay" },
+                {
+                  "label": "Physical Bank Counter (Habib Bank Ltd / National Bank)",
+                  "value": "bank_counter"
+                }
+              ],
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-tran-ref",
+              "name": "transactionReference",
+              "label": "Transaction Reference / Bank Scroll Number",
+              "type": "text",
+              "placeholder": "e.g. FT240989123891",
+              "validation": {
+                "required": true,
+                "min": 4
+              }
+            },
+            {
+              "id": "f-paid-date",
+              "name": "paidAt",
+              "label": "Date & Time of Payment",
+              "type": "date",
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-paid-receipt",
+              "name": "paidReceiptUrl",
+              "label": "Upload Paid Challan Receipt / Transaction Screenshot",
+              "type": "file",
+              "dropzoneConfig": {
+                "accept": [".pdf", ".jpg", ".jpeg", ".png"],
+                "maxSizeMb": 5,
+                "instruction": "Upload clear stamped bank challan copy or mobile banking receipt screenshot"
+              },
+              "validation": {
+                "required": true
+              }
+            },
+            {
+              "id": "f-declaration",
+              "name": "declarationAccepted",
+              "label": "I solemnly declare that all degrees and transcripts provided are genuine and accredited under HEC PQR. I understand that forged submissions are subject to legal prosecution under PPC Section 468/471.",
+              "type": "checkbox",
+              "validation": {
+                "required": true,
+                "customMessage": "You must accept the legal declaration to submit your application"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

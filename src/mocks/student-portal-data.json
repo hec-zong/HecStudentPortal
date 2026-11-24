@@ -1,0 +1,759 @@
+{
+  "returningUserBootstrap": {
+    "isFirstTimeUser": false,
+    "hasSubmittedApplication": true,
+    "profileCompletionPercentage": 92,
+    "student": {
+      "id": "std-98214",
+      "cnic": "35202-1928374-1",
+      "passportNumber": "AL9182341",
+      "fullName": "Hamza Tariq Malik",
+      "fatherOrHusbandName": "Tariq Malik",
+      "dateOfBirth": "1999-04-12",
+      "gender": "male",
+      "maritalStatus": "single",
+      "nationality": "Pakistani",
+      "domicileProvince": "Punjab",
+      "domicileDistrict": "Lahore",
+      "email": "hamza.tariq@alumni.nust.edu.pk",
+      "mobileNumber": "+923001234567",
+      "postalAddress": {
+        "line1": "House 14-B, Sector G, Phase 5, DHA",
+        "city": "Lahore",
+        "district": "Lahore",
+        "province": "Punjab",
+        "postalCode": "54792",
+        "country": "Pakistan"
+      },
+      "permanentAddress": {
+        "line1": "House 14-B, Sector G, Phase 5, DHA",
+        "city": "Lahore",
+        "district": "Lahore",
+        "province": "Punjab",
+        "postalCode": "54792",
+        "country": "Pakistan"
+      },
+      "hasSpecialNeeds": false,
+      "cnicFrontUrl": "https://storage.hec.gov.pk/mock/cnic-front-35202.png",
+      "cnicBackUrl": "https://storage.hec.gov.pk/mock/cnic-back-35202.png",
+      "isCnicVerified": true,
+      "profilePictureUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+    },
+    "pendingTasks": [
+      {
+        "id": "task-01",
+        "title": "Action Required: Re-upload Clear Transcript Scan",
+        "description": "L1 Controller flagged BS Transcript page 2 for application #APP-2024-9981 due to faded grading key.",
+        "applicationId": "#APP-2024-9981",
+        "actionType": "resubmit_doc",
+        "dueDate": "2026-11-28",
+        "priority": "high",
+        "link": "/applications/#APP-2024-9981/track"
+      },
+      {
+        "id": "task-02",
+        "title": "Pending 1-Link Challan Payment",
+        "description": "Challan #HEC-CH-2024-88491 for Application #App-001 (PKR 3,400) awaits payment confirmation.",
+        "applicationId": "#App-001",
+        "actionType": "pay_challan",
+        "dueDate": "2026-11-30",
+        "priority": "medium",
+        "link": "/billing/challan/HEC-CH-2024-88491"
+      }
+    ],
+    "hecWallet": [
+      {
+        "id": "wal-01",
+        "title": "Attested HSSC Intermediate Sanad",
+        "degreeLevel": "HSSC",
+        "programName": "Pre-Engineering Certificate",
+        "university": "Board of Intermediate and Secondary Education, Lahore",
+        "serialNumber": "HEC-ATT-2023-091823",
+        "qrCodeData": "https://verify.hec.gov.pk/qr/HEC-ATT-2023-091823",
+        "attestationDate": "2023-08-14",
+        "verificationHash": "0x9f83ab2148dc82910fae",
+        "status": "active",
+        "downloadUrl": "https://storage.hec.gov.pk/mock/attested-hssc-malik.pdf",
+        "issuedBy": "HEC Regional Centre Lahore"
+      },
+      {
+        "id": "wal-02",
+        "title": "Attested SSC Matriculation Sanad",
+        "degreeLevel": "SSC",
+        "programName": "Science Group Certificate",
+        "university": "Federal Board of Intermediate and Secondary Education",
+        "serialNumber": "HEC-ATT-2021-002914",
+        "qrCodeData": "https://verify.hec.gov.pk/qr/HEC-ATT-2021-002914",
+        "attestationDate": "2021-06-20",
+        "verificationHash": "0x7c41eb908129031a0fb8",
+        "status": "active",
+        "downloadUrl": "https://storage.hec.gov.pk/mock/attested-matric-malik.pdf",
+        "issuedBy": "HEC Secretariat Islamabad"
+      }
+    ],
+    "recentApplications": [
+      {
+        "id": "#APP-2024-9981",
+        "serviceName": "Degree & Transcript Attestation (BS Computer Science)",
+        "submittedAt": "2026-11-18T10:30:00Z",
+        "status": "resubmit_required",
+        "statusLabel": "Resubmit Required",
+        "currentStage": "L1 Controller Review",
+        "amountPaid": 2700,
+        "actionRequired": true,
+        "actionMessage": "Reviewer requested re-upload of BS transcript page 2."
+      },
+      {
+        "id": "#APP-2024-1022",
+        "serviceName": "Degree Attestation (Master of Science AI)",
+        "submittedAt": "2026-10-05T09:15:00Z",
+        "status": "dispatched",
+        "statusLabel": "Dispatched / Complete",
+        "currentStage": "Completed / Dispatched",
+        "amountPaid": 4400,
+        "actionRequired": false
+      },
+      {
+        "id": "#App-001",
+        "serviceName": "Degree Attestation (BS Electrical Engineering)",
+        "submittedAt": "2026-11-22T14:40:00Z",
+        "status": "in_progress",
+        "statusLabel": "In Scrutiny",
+        "currentStage": "Scrutiny Desk 04",
+        "amountPaid": 3400,
+        "actionRequired": false
+      },
+      {
+        "id": "#App-002",
+        "serviceName": "Equivalence Attestation (GCE A-Levels)",
+        "submittedAt": "2026-11-12T11:20:00Z",
+        "status": "approved",
+        "statusLabel": "Approved by L2 Controller",
+        "currentStage": "Physical Stamping & Seal",
+        "amountPaid": 2000,
+        "actionRequired": false
+      }
+    ]
+  },
+  "firstTimeUserBootstrap": {
+    "isFirstTimeUser": true,
+    "hasSubmittedApplication": false,
+    "profileCompletionPercentage": 35,
+    "student": {
+      "id": "std-new-10492",
+      "cnic": "37405-0918273-3",
+      "fullName": "Ayesha Siddiqua",
+      "fatherOrHusbandName": "Muhammad Siddique",
+      "dateOfBirth": "2002-09-15",
+      "gender": "female",
+      "maritalStatus": "single",
+      "nationality": "Pakistani",
+      "domicileProvince": "Punjab",
+      "domicileDistrict": "Rawalpindi",
+      "email": "ayesha.siddiqua@gmail.com",
+      "mobileNumber": "+923335558899",
+      "postalAddress": {
+        "line1": "Flat 4, Street 12, Gulrez Housing Scheme",
+        "city": "Rawalpindi",
+        "district": "Rawalpindi",
+        "province": "Punjab",
+        "postalCode": "46000",
+        "country": "Pakistan"
+      },
+      "permanentAddress": {
+        "line1": "Flat 4, Street 12, Gulrez Housing Scheme",
+        "city": "Rawalpindi",
+        "district": "Rawalpindi",
+        "province": "Punjab",
+        "postalCode": "46000",
+        "country": "Pakistan"
+      },
+      "hasSpecialNeeds": false,
+      "isCnicVerified": false
+    },
+    "pendingTasks": [
+      {
+        "id": "task-init-01",
+        "title": "Complete Profile Verification",
+        "description": "Upload CNIC Front and Back to enable degree attestation application.",
+        "actionType": "verify_profile",
+        "priority": "high",
+        "link": "/profile"
+      }
+    ],
+    "hecWallet": [],
+    "recentApplications": []
+  },
+  "applicationsDetail": {
+    "#APP-2024-9981": {
+      "id": "#APP-2024-9981",
+      "trackingId": "HEC-SYN-9981-LHR",
+      "serviceType": "Degree & Transcript Attestation",
+      "submittedAt": "2026-11-18T10:30:00Z",
+      "overallStatus": "resubmit_required",
+      "currentStage": "l1_controller",
+      "currentStageIndex": 2,
+      "totalStages": 6,
+      "stages": [
+        {
+          "stage": "submitted",
+          "title": "Application Received & Logged",
+          "description": "Application submitted via Synapark workflow engine with verified e-challan.",
+          "status": "approved",
+          "startedAt": "2026-11-18T10:30:00Z",
+          "completedAt": "2026-11-18T10:30:05Z",
+          "assignedWorker": {
+            "name": "System Ingestion Engine",
+            "role": "Synapark Ingestion Bot",
+            "department": "Digital Services Division"
+          }
+        },
+        {
+          "stage": "scrutiny",
+          "title": "Initial Desk Review & PQR Matching",
+          "description": "Checking accredited program against Pakistan Qualification Register (PQR) and prior credentials.",
+          "status": "approved",
+          "startedAt": "2026-11-19T08:30:00Z",
+          "completedAt": "2026-11-20T11:45:00Z",
+          "assignedWorker": {
+            "name": "Nasir Mehmood",
+            "role": "Scrutiny Officer - Desk 04",
+            "department": "Accreditation & Attestation Cell"
+          }
+        },
+        {
+          "stage": "l1_controller",
+          "title": "Assistant Director Attestation Review (L1)",
+          "description": "Detailed forensic and cross-check of transcript grading key and university seal.",
+          "status": "resubmit_required",
+          "startedAt": "2026-11-21T09:00:00Z",
+          "assignedWorker": {
+            "name": "Dr. Farhan Akhtar",
+            "role": "Assistant Director Attestation",
+            "department": "Attestation & Equivalence Division"
+          }
+        },
+        {
+          "stage": "l2_controller",
+          "title": "Deputy Director Final Concurrence (L2)",
+          "description": "Executive approval and authorization for security stamp generation.",
+          "status": "pending"
+        },
+        {
+          "stage": "attestation",
+          "title": "Digital Stamping & Security Seal Printing",
+          "description": "Application of holographic barcode sticker and cryptographic QR stamp.",
+          "status": "pending"
+        },
+        {
+          "stage": "completed_dispatched",
+          "title": "Dispatched / Complete",
+          "description": "Handed over to authorized courier service for delivery to student address.",
+          "status": "pending"
+        }
+      ],
+      "commentsTrail": [
+        {
+          "id": "cm-01",
+          "stage": "scrutiny",
+          "stageName": "Initial Desk Review",
+          "reviewerRole": "Scrutiny Officer - Desk 04",
+          "reviewerName": "Nasir Mehmood",
+          "comment": "PQR Program verified: BS Computer Science from NUST SEECS (Intake 2019) is accredited under NCEAC Batch-19.",
+          "type": "approval",
+          "isReuploadAllowed": false,
+          "createdAt": "2026-11-20T11:40:00Z"
+        },
+        {
+          "id": "cm-02",
+          "stage": "l1_controller",
+          "stageName": "L1 Controller Review",
+          "reviewerRole": "Assistant Director Attestation",
+          "reviewerName": "Dr. Farhan Akhtar",
+          "comment": "Transcript page 2 scan is blurry; the grading criteria table and Controller of Examination signature are illegible. Please re-upload a clear, high-resolution scan.",
+          "type": "resubmit_required",
+          "rejectionReason": "Blurry document scan on transcript grading key",
+          "affectedDocumentType": "Transcript",
+          "isReuploadAllowed": true,
+          "createdAt": "2026-11-21T14:15:00Z"
+        }
+      ],
+      "selectedDegrees": [
+        {
+          "academicRecordId": "rec-nust-01",
+          "degreeLevel": "Bachelor Degree (4-Year BS)",
+          "programTitle": "Bachelor of Science in Computer Science",
+          "universityOrBoard": "National University of Sciences and Technology (NUST)",
+          "passingYear": 2023,
+          "rollNumber": "19-SEECS-BSCS-044",
+          "registrationNumber": "2019-NUST-REG-9812",
+          "selectedDocuments": [
+            {
+              "type": "Degree",
+              "attestOriginal": true,
+              "copiesCount": 1,
+              "originalFee": 1000,
+              "copyFee": 700,
+              "subtotal": 1700,
+              "documentUrl": "https://storage.hec.gov.pk/mock/bs-degree-original.pdf"
+            },
+            {
+              "type": "Transcript",
+              "attestOriginal": true,
+              "copiesCount": 0,
+              "originalFee": 1000,
+              "copyFee": 0,
+              "subtotal": 1000,
+              "documentUrl": "https://storage.hec.gov.pk/mock/bs-transcript-blurry.pdf"
+            }
+          ],
+          "itemTotal": 2700
+        }
+      ],
+      "challan": {
+        "challanNumber": "HEC-CH-2024-99812",
+        "psid": "10009823481239102",
+        "applicationId": "#APP-2024-9981",
+        "studentCnic": "35202-1928374-1",
+        "studentName": "Hamza Tariq Malik",
+        "issueDate": "2026-11-18",
+        "dueDate": "2026-11-25",
+        "itemsBreakdown": [
+          {
+            "description": "Original BS Degree Attestation",
+            "quantity": 1,
+            "unitPrice": 1000,
+            "total": 1000
+          },
+          {
+            "description": "BS Degree Photocopy Attestation",
+            "quantity": 1,
+            "unitPrice": 700,
+            "total": 700
+          },
+          {
+            "description": "Original BS Transcript Attestation",
+            "quantity": 1,
+            "unitPrice": 1000,
+            "total": 1000
+          }
+        ],
+        "totalAmount": 2700,
+        "currency": "PKR",
+        "status": "paid",
+        "paymentMode": "1link_atm_mobile",
+        "paidReceiptUrl": "https://storage.hec.gov.pk/mock/challan-receipt-9981.pdf",
+        "paidAt": "2026-11-18T12:05:00Z",
+        "transactionReference": "FT243229810481"
+      }
+    },
+    "#APP-2024-1022": {
+      "id": "#APP-2024-1022",
+      "trackingId": "HEC-SYN-1022-ISB",
+      "serviceType": "Degree & Transcript Attestation",
+      "submittedAt": "2026-10-05T09:15:00Z",
+      "overallStatus": "dispatched",
+      "currentStage": "completed_dispatched",
+      "currentStageIndex": 5,
+      "totalStages": 6,
+      "stages": [
+        {
+          "stage": "submitted",
+          "title": "Application Received & Logged",
+          "description": "Application received and authenticated via 1-Link PSID.",
+          "status": "approved",
+          "startedAt": "2026-10-05T09:15:00Z",
+          "completedAt": "2026-10-05T09:15:02Z"
+        },
+        {
+          "stage": "scrutiny",
+          "title": "Initial Desk Review & PQR Matching",
+          "description": "Accreditation and PQR record verified against NUST database.",
+          "status": "approved",
+          "startedAt": "2026-10-06T09:00:00Z",
+          "completedAt": "2026-10-07T14:00:00Z"
+        },
+        {
+          "stage": "l1_controller",
+          "title": "Assistant Director Attestation Review (L1)",
+          "description": "Primary controller concurrence granted.",
+          "status": "approved",
+          "startedAt": "2026-10-08T10:00:00Z",
+          "completedAt": "2026-10-09T16:30:00Z"
+        },
+        {
+          "stage": "l2_controller",
+          "title": "Deputy Director Final Concurrence (L2)",
+          "description": "Final concurrence approved for certificate issuing.",
+          "status": "approved",
+          "startedAt": "2026-10-10T11:00:00Z",
+          "completedAt": "2026-10-10T15:20:00Z"
+        },
+        {
+          "stage": "attestation",
+          "title": "Digital Stamping & Security Seal Printing",
+          "description": "Holographic stamp serial #HEC-ATT-2024-00918 affixed with encrypted QR code.",
+          "status": "approved",
+          "startedAt": "2026-10-11T09:30:00Z",
+          "completedAt": "2026-10-11T13:40:00Z"
+        },
+        {
+          "stage": "completed_dispatched",
+          "title": "Dispatched / Complete",
+          "description": "Dispatched via Leopard Courier tracking #LEO-982138914.",
+          "status": "approved",
+          "startedAt": "2026-10-12T09:00:00Z",
+          "completedAt": "2026-10-14T11:00:00Z"
+        }
+      ],
+      "commentsTrail": [
+        {
+          "id": "cm-101",
+          "stage": "scrutiny",
+          "stageName": "Initial Scrutiny",
+          "reviewerRole": "Scrutiny Desk",
+          "comment": "All documents in order. MS AI degree verified from NUST archive.",
+          "type": "approval",
+          "isReuploadAllowed": false,
+          "createdAt": "2026-10-07T13:50:00Z"
+        },
+        {
+          "id": "cm-102",
+          "stage": "completed_dispatched",
+          "stageName": "Dispatch Division",
+          "reviewerRole": "Courier Coordinator",
+          "comment": "Package sealed and handed over to Leopard Courier service.",
+          "type": "info",
+          "isReuploadAllowed": false,
+          "createdAt": "2026-10-12T10:30:00Z"
+        }
+      ],
+      "selectedDegrees": [
+        {
+          "academicRecordId": "rec-nust-02",
+          "degreeLevel": "Master Degree (MS / MPhil)",
+          "programTitle": "Master of Science in Artificial Intelligence",
+          "universityOrBoard": "National University of Sciences and Technology",
+          "passingYear": 2025,
+          "rollNumber": "23-SEECS-MSAI-002",
+          "registrationNumber": "2023-NUST-MS-0092",
+          "selectedDocuments": [
+            {
+              "type": "Degree",
+              "attestOriginal": true,
+              "copiesCount": 2,
+              "originalFee": 1000,
+              "copyFee": 1400,
+              "subtotal": 2400
+            },
+            {
+              "type": "Transcript",
+              "attestOriginal": true,
+              "copiesCount": 1,
+              "originalFee": 1000,
+              "copyFee": 700,
+              "subtotal": 1700
+            }
+          ],
+          "itemTotal": 4400
+        }
+      ],
+      "challan": {
+        "challanNumber": "HEC-CH-2024-10220",
+        "psid": "10009823481239999",
+        "applicationId": "#APP-2024-1022",
+        "studentCnic": "35202-1928374-1",
+        "studentName": "Hamza Tariq Malik",
+        "issueDate": "2026-10-05",
+        "dueDate": "2026-10-12",
+        "itemsBreakdown": [
+          {
+            "description": "Original MS Degree",
+            "quantity": 1,
+            "unitPrice": 1000,
+            "total": 1000
+          },
+          {
+            "description": "MS Degree Copies",
+            "quantity": 2,
+            "unitPrice": 700,
+            "total": 1400
+          },
+          {
+            "description": "Original MS Transcript",
+            "quantity": 1,
+            "unitPrice": 1000,
+            "total": 1000
+          },
+          {
+            "description": "MS Transcript Copy",
+            "quantity": 1,
+            "unitPrice": 700,
+            "total": 700
+          },
+          {
+            "description": "Courier & Safe Envelope Handling",
+            "quantity": 1,
+            "unitPrice": 300,
+            "total": 300
+          }
+        ],
+        "totalAmount": 4400,
+        "currency": "PKR",
+        "status": "paid",
+        "paymentMode": "kuickpay",
+        "paidReceiptUrl": "https://storage.hec.gov.pk/mock/receipt-1022.pdf",
+        "paidAt": "2026-10-05T11:00:00Z",
+        "transactionReference": "KP-98214-991"
+      },
+      "dispatchInfo": {
+        "courierName": "Leopard Courier Services",
+        "trackingNumber": "LEO-982138914",
+        "dispatchedAt": "2026-10-12T09:00:00Z",
+        "estimatedDelivery": "2026-10-14T17:00:00Z"
+      }
+    },
+    "#App-001": {
+      "id": "#App-001",
+      "trackingId": "HEC-SYN-001-LHR",
+      "serviceType": "Degree & Transcript Attestation",
+      "submittedAt": "2026-11-22T14:40:00Z",
+      "overallStatus": "in_progress",
+      "currentStage": "scrutiny",
+      "currentStageIndex": 1,
+      "totalStages": 6,
+      "stages": [
+        {
+          "stage": "submitted",
+          "title": "Application Received & Logged",
+          "description": "Application submitted, challan generated.",
+          "status": "approved",
+          "startedAt": "2026-11-22T14:40:00Z",
+          "completedAt": "2026-11-22T14:40:05Z"
+        },
+        {
+          "stage": "scrutiny",
+          "title": "Initial Desk Review & PQR Matching",
+          "description": "In queue at Scrutiny Desk 04.",
+          "status": "in_progress",
+          "startedAt": "2026-11-23T09:00:00Z"
+        },
+        {
+          "stage": "l1_controller",
+          "title": "Assistant Director Attestation Review (L1)",
+          "description": "Awaiting initial desk approval.",
+          "status": "pending"
+        },
+        {
+          "stage": "l2_controller",
+          "title": "Deputy Director Final Concurrence (L2)",
+          "description": "Pending L1 sign-off.",
+          "status": "pending"
+        },
+        {
+          "stage": "attestation",
+          "title": "Digital Stamping & Security Seal Printing",
+          "description": "Pending controller approval.",
+          "status": "pending"
+        },
+        {
+          "stage": "completed_dispatched",
+          "title": "Dispatched / Complete",
+          "description": "Pending completion.",
+          "status": "pending"
+        }
+      ],
+      "commentsTrail": [],
+      "selectedDegrees": [
+        {
+          "academicRecordId": "rec-nust-03",
+          "degreeLevel": "Bachelor Degree (4-Year BE)",
+          "programTitle": "Bachelor of Engineering in Electrical Engineering",
+          "universityOrBoard": "National University of Sciences and Technology",
+          "passingYear": 2021,
+          "rollNumber": "17-EE-091",
+          "registrationNumber": "2017-NUST-BE-019",
+          "selectedDocuments": [
+            {
+              "type": "Degree",
+              "attestOriginal": true,
+              "copiesCount": 1,
+              "originalFee": 1000,
+              "copyFee": 700,
+              "subtotal": 1700
+            },
+            {
+              "type": "Transcript",
+              "attestOriginal": true,
+              "copiesCount": 1,
+              "originalFee": 1000,
+              "copyFee": 700,
+              "subtotal": 1700
+            }
+          ],
+          "itemTotal": 3400
+        }
+      ],
+      "challan": {
+        "challanNumber": "HEC-CH-2024-88491",
+        "psid": "10009823481239841",
+        "applicationId": "#App-001",
+        "studentCnic": "35202-1928374-1",
+        "studentName": "Hamza Tariq Malik",
+        "issueDate": "2026-11-22",
+        "dueDate": "2026-11-29",
+        "itemsBreakdown": [
+          {
+            "description": "BE Degree Original",
+            "quantity": 1,
+            "unitPrice": 1000,
+            "total": 1000
+          },
+          {
+            "description": "BE Degree Copy",
+            "quantity": 1,
+            "unitPrice": 700,
+            "total": 700
+          },
+          {
+            "description": "BE Transcript Original",
+            "quantity": 1,
+            "unitPrice": 1000,
+            "total": 1000
+          },
+          {
+            "description": "BE Transcript Copy",
+            "quantity": 1,
+            "unitPrice": 700,
+            "total": 700
+          }
+        ],
+        "totalAmount": 3400,
+        "currency": "PKR",
+        "status": "unpaid",
+        "paymentMode": "1link_atm_mobile"
+      }
+    },
+    "#App-002": {
+      "id": "#App-002",
+      "trackingId": "HEC-SYN-002-ISB",
+      "serviceType": "Equivalence Attestation",
+      "submittedAt": "2026-11-12T11:20:00Z",
+      "overallStatus": "approved",
+      "currentStage": "attestation",
+      "currentStageIndex": 4,
+      "totalStages": 6,
+      "stages": [
+        {
+          "stage": "submitted",
+          "title": "Application Received & Logged",
+          "description": "Application logged and fee settled.",
+          "status": "approved",
+          "startedAt": "2026-11-12T11:20:00Z",
+          "completedAt": "2026-11-12T11:20:02Z"
+        },
+        {
+          "stage": "scrutiny",
+          "title": "Initial Desk Review & PQR Matching",
+          "description": "IBCC equivalence authenticated.",
+          "status": "approved",
+          "startedAt": "2026-11-13T09:00:00Z",
+          "completedAt": "2026-11-14T15:00:00Z"
+        },
+        {
+          "stage": "l1_controller",
+          "title": "Assistant Director Attestation Review (L1)",
+          "description": "L1 review verified successfully.",
+          "status": "approved",
+          "startedAt": "2026-11-15T09:00:00Z",
+          "completedAt": "2026-11-16T12:00:00Z"
+        },
+        {
+          "stage": "l2_controller",
+          "title": "Deputy Director Final Concurrence (L2)",
+          "description": "Final concurrence approved.",
+          "status": "approved",
+          "startedAt": "2026-11-17T09:00:00Z",
+          "completedAt": "2026-11-17T17:00:00Z"
+        },
+        {
+          "stage": "attestation",
+          "title": "Digital Stamping & Security Seal Printing",
+          "description": "Stamping in progress at regional vault.",
+          "status": "in_progress",
+          "startedAt": "2026-11-20T08:30:00Z"
+        },
+        {
+          "stage": "completed_dispatched",
+          "title": "Dispatched / Complete",
+          "description": "Pending courier dispatch.",
+          "status": "pending"
+        }
+      ],
+      "commentsTrail": [
+        {
+          "id": "cm-002-1",
+          "stage": "l2_controller",
+          "stageName": "L2 Controller",
+          "reviewerRole": "Deputy Director Attestation",
+          "comment": "Concurrence verified against IBCC online register. Approved for issuance.",
+          "type": "approval",
+          "isReuploadAllowed": false,
+          "createdAt": "2026-11-17T16:50:00Z"
+        }
+      ],
+      "selectedDegrees": [
+        {
+          "academicRecordId": "rec-ibcc-01",
+          "degreeLevel": "Higher Secondary School Certificate (Inter)",
+          "programTitle": "Cambridge A-Levels Equivalence Certificate",
+          "universityOrBoard": "Inter Board Coordination Commission (IBCC)",
+          "passingYear": 2017,
+          "rollNumber": "A-98129-ISB",
+          "registrationNumber": "IBCC-EQ-2017-9812",
+          "selectedDocuments": [
+            {
+              "type": "Equivalence_Certificate",
+              "attestOriginal": true,
+              "copiesCount": 1,
+              "originalFee": 1000,
+              "copyFee": 1000,
+              "subtotal": 2000
+            }
+          ],
+          "itemTotal": 2000
+        }
+      ],
+      "challan": {
+        "challanNumber": "HEC-CH-2024-00291",
+        "psid": "10009823481230002",
+        "applicationId": "#App-002",
+        "studentCnic": "35202-1928374-1",
+        "studentName": "Hamza Tariq Malik",
+        "issueDate": "2026-11-12",
+        "dueDate": "2026-11-19",
+        "itemsBreakdown": [
+          {
+            "description": "Equivalence Certificate Original",
+            "quantity": 1,
+            "unitPrice": 1000,
+            "total": 1000
+          },
+          {
+            "description": "Equivalence Certificate Copy",
+            "quantity": 1,
+            "unitPrice": 1000,
+            "total": 1000
+          }
+        ],
+        "totalAmount": 2000,
+        "currency": "PKR",
+        "status": "paid",
+        "paymentMode": "bank_counter",
+        "paidReceiptUrl": "https://storage.hec.gov.pk/mock/challan-002.pdf",
+        "paidAt": "2026-11-13T10:00:00Z",
+        "transactionReference": "HBL-BR-091823"
+      }
+    }
+  }
+}

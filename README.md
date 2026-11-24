@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hec-e-Portal
 
-## Getting Started
+Enterprise Higher Education Commission (HEC) Student & Administrative Portal built with Next.js App Router, TypeScript, Tailwind CSS, and shadcn/ui.
 
-First, run the development server:
+## Current Stack
+
+- Next.js 16 (App Router + Turbopack)
+- React 19
+- TypeScript (Strict Mode)
+- Tailwind CSS
+- shadcn/ui
+- TanStack Query
+- Zustand
+- React Hook Form + Zod
+- Vitest + Playwright
+- ESLint + Prettier + Husky
+
+## Requirements
+
+- Node.js 20+
+- yarn
+- Git
+
+## Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open the local URL printed by Next.js (default: [http://localhost:3000](http://localhost:3000)).
 
-## Learn More
+## Validation
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+yarn run check
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Production Build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+yarn build
+```
 
-## Deploy on Vercel
+## Directory Overview
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Directory            | Purpose                                                 |
+| -------------------- | ------------------------------------------------------- |
+| `src/app/`           | Routes, layouts, error boundaries, health API           |
+| `src/components/`    | Shared React components and global providers            |
+| `src/components/ui/` | shadcn/ui primitives                                    |
+| `src/features/`      | Feature-specific domain code                            |
+| `src/lib/`           | Utilities, API client, query client, logger, form utils |
+| `src/store/`         | Zustand client state stores                             |
+| `src/config/`        | Typed application configuration                         |
+| `tests/`             | Unit, integration, and E2E tests                        |
+| `docs/`              | Project knowledge, architecture, decisions, and memory  |
+| `.agents/skills/`    | Canonical agent skills                                  |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Agentic Development
+
+This project is configured for OpenCode agentic coding.
+
+- `AGENTS.md` — Primary instruction file for all coding agents
+- `opencode.jsonc` — OpenCode configuration
+- `.agents/skills/` — Reusable agent workflows (committed to Git)
+- `docs/` — Project memory, architecture, and decisions
+
+Project skills are committed to Git and are not reinstalled by `yarn install`.
+
+## Security
+
+Secrets belong in `.env.local` or the deployment environment and must not be committed.
+See `.env.example` for documented variable names.
+
+## Documentation
+
+- [Project Memory](docs/PROJECT_MEMORY.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Decisions](docs/DECISIONS.md)
+- [Features](docs/FEATURES.md)
+- [Development Guide](docs/DEVELOPMENT.md)
+- [MCP Setup](docs/MCP.md)
+- [Skills](docs/SKILLS.md)
